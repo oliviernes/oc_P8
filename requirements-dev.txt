@@ -1,3 +1,5 @@
 pytest==5.3.5
 black==19.10b0
 pgcli==2.2.0
+pylint==2.4.4
+
