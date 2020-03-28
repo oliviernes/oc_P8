@@ -7,6 +7,4 @@ class category(models.Model):
 
 class products(models.Model):
     code = models.CharField(max_length=13)
-    category_id=models.ForeignKey(category, on_delete=models.CASCADE)
-    
-
+    category=models.ForeignKey(category, on_delete=models.CASCADE)
