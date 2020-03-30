@@ -9044,6 +9044,11 @@ button.bg-dark:focus {
     padding-left: 3rem !important;
   }
 
+  .pt-lg-6,
+.py-lg-6 {
+    padding-top: 6rem !important;
+  }
+
   .m-lg-n1 {
     margin: -0.25rem !important;
   }
@@ -9981,6 +9986,10 @@ hr.light {
 
 .page-section {
   padding: 8rem 0;
+}
+
+.page-section2 {
+  padding: 3rem 0;
 }
 
 #mainNav {
