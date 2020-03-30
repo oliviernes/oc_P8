@@ -2,8 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.http import HttpResponse
 
 
-def index(request):
-    return render(request, "food_substitute/index.html")
+class DetailView(generic.DetailView):
+    model=Products
+    template_name='food_substitute/detail.html'
+
+def disclaimer(request):
+    return render(request, "food_substitute/disclaimer.html")
