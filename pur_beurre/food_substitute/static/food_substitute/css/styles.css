@@ -54,6 +54,32 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/*
+Customised:
+*/
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Container holding the image and the text */
+.container2 {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+section-head {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-position: center center;
+  background-color: #000000;
+  background-repeat: no-repeat;
+}
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -9990,6 +10016,10 @@ hr.light {
 
 .page-section2 {
   padding: 3rem 0;
+}
+
+.page-section3 {
+  padding: 1rem 0;
 }
 
 #mainNav {
