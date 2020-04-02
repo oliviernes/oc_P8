@@ -2,14 +2,32 @@
 
 {% block content %}
     <header class="masthead">
-        <div class="section-head" style="background-image: url('{{ image_front }}');">
-            <section class="page-section3" >
-                <div>Centered</div>
-            </section>
-
-        </div>    
-        <section class="page-section bg-primary" id="contact">
-            <h1> Essai disclaimer display </h1>
+        <div class="row justify-content-center image">
+            <img src="{{ image_front }}" alt="image" />
+            <h2 class="row justify-content-center">
+                <span>{{ name }}<span class='spacer'></span>
+            </h2>
+        </div>
+        <section class="page-section2 bg-primary" id="about">
+            <div class="row">
+                <div class="col-lg-4 ml-auto text-center">
+                    <h3 class="mb-3">Nutriscore</h3>
+                    <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ nutrition_grades }}.svg" title="Logo nutriscore" />
+                </div>
+                <div class="col-lg-4 mr-auto text-center">
+                    <h3 class="mb-auto">Repères nutritionnels</h3>
+                    {% if image_nutrition %}{{ spaceless }}
+                    <div><img src="{{ image_nutrition }}" title="Repères nutritionnels" /></div>
+                    {% else %}
+                    <img src="https://via.placeholder.com/250x100?text=Désolé+pas+d'infos+disponibles+..." title="Repères nutritionnels" />
+                    {% endif %}{{ endspaceless }}
+                </div>
+            </div>
+            <br>
+            <div class="col-lg-8 mx-auto text-center">
+                <p class="bg-faded">{{ingredients_list}}</p>
+            </div>
+            <br>
         </section>
-    </header>    
+    </header>
 {% endblock %}
