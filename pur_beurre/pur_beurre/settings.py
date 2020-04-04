@@ -52,6 +52,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "pur_beurre.urls"
 
+#~ APPEND_SLASH = True
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -104,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "fr-fr"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Paris"
 
 USE_I18N = True
 

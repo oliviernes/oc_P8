@@ -21,7 +21,7 @@ def product_data(code):
     req = requests.get(API_URL)
 
     req_output = req.json()
-    
+
     data_prod = {'name':req_output['product']['product_name_fr'], 
     'image_front':req_output['product']['image_front_url'],
     'image_nutrition':req_output['product']['image_nutrition_url'],
@@ -34,3 +34,23 @@ def product_data(code):
 
 #~ data=product_data(5411188119098)
 
+def search_data(category):
+
+    search_param = {
+        "search_terms": category,
+        "search_tag": "categories_tag",
+        "sort_by": "unique_scans_n",
+        "page_size": 10,
+        "json": 1,
+    }
+
+    API_URL = "https://fr-en.openfoodfacts.org/cgi/search.pl?"
+
+    req = requests.get(API_URL, search_param)
+
+    # output of request as a json file
+    req_output = req.json()
+
+    search_data=req_output['products']
+
+    return search_data
