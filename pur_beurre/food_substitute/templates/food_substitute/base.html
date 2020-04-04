@@ -1,6 +1,4 @@
-<!--
 {% load static %}
--->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,14 +47,14 @@
         {% block welcome %}{% endblock %}
         {% block detail %}
             <header class="masthead">
-                <div class="row justify-content-center image">
+                <div class="row col-lg-12 mx-auto justify-content-center image">
                     <img src="{{ image_front }}" alt="image" />
                     <h2 id="title_detail" class="row justify-content-center">
                         <span>{{ name }}<span class='spacer'></span>
                     </h2>
                 </div>
-                <section class="page-section2 bg-primary" id="about">
-                    <div class="row">
+                <section class="page-section bg-primary">
+                    <div class="row col-lg-12">
                         <div class="col-lg-4 ml-auto text-center">
                             <h3 class="mb-3">Nutriscore</h3>
                             <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ nutrition_grades }}.svg" title="Logo nutriscore" />
@@ -64,6 +62,7 @@
                         <div class="col-lg-4 mr-auto text-center">
                             <h3 class="mb-auto">Repères nutritionnels</h3>
                             {% if image_nutrition %}{{ spaceless }}
+                            <br>
                             <div><img src="{{ image_nutrition }}" title="Repères nutritionnels" /></div>
                             {% else %}
                             <img src="https://via.placeholder.com/250x100?text=Désolé+pas+d'infos+disponibles+..." title="Repères nutritionnels" />
