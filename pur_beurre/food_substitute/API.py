@@ -51,6 +51,6 @@ def search_data(category):
     # output of request as a json file
     req_output = req.json()
 
-    search_data=req_output['products']
+    prod_cat=req_output['products']
 
-    return search_data
+    return prod_cat[0]['product_name_fr']
