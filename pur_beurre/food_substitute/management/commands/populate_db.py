@@ -33,7 +33,7 @@ class Command(BaseCommand):
         
         for categor in CATEGORIES:
             infos_prod=self.search_data(categor)
-            cat=Category(name='category')
+            cat=Category(name=categor)
             cat.save()
             print(f"The category {cat.name} has been insterted in the \
 DB")
