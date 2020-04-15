@@ -8,3 +8,10 @@ class Category(models.Model):
 class Products(models.Model):
     code = models.CharField(max_length=13)
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
+    name=models.CharField(max_length=255, null=True)
+    nutrition_grades=models.CharField(max_length=255, null=True)
+    image_front=models.CharField(max_length=255, null=True)
+    image_front_thumb=models.CharField(max_length=255, null=True)
+    image_nutrition=models.CharField(max_length=255, null=True)
+    url=models.CharField(max_length=255, null=True)
+    
