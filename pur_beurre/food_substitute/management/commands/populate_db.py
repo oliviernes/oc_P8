@@ -37,15 +37,19 @@ class Command(BaseCommand):
             cat.save()
             print(f"The category {cat.name} has been insterted in the \
 DB")
-            for i in range(250):
-                prod_index=infos_prod[i]
-                prod=Products(code=prod_index['code'], \
-category=Category.objects.get(id=cat.id),)
-                prod.name=prod_index.get("product_name_fr", "")
-                prod.image_front=prod_index.get('image_front_url', "")
-                prod.image_front_thumb=prod_index.get('image_front_thumb_url', "")
-                prod.image_nutrition=prod_index.get('image_nutrition_url', "")
-                prod.nutrition_grades=prod_index.get('nutrition_grades', "")
-                prod.save()
-                print(f"The product {prod.name} has been inserted in \
-the DB")
+            if len(infos_prod)>0:
+                for i in range(250):
+                    prod_index=infos_prod[i]
+                    prod=Products(code=prod_index['code'], \
+    category=Category.objects.get(id=cat.id),)
+                    prod.name=prod_index.get("product_name_fr", "")
+                    prod.image_front=prod_index.get('image_front_url', "")
+                    prod.image_front_thumb=prod_index.get('image_front_thumb_url', "")
+                    prod.image_nutrition=prod_index.get('image_nutrition_url', "")
+                    prod.nutrition_grades=prod_index.get('nutrition_grades', "")
+                    prod.save()
+                    print(f"The product {prod.name} has been inserted in \
+    the DB")
+            else:
+                print(f"The category {cat.name} is not present in OFF\
+API. No products will be inserted in the database")
