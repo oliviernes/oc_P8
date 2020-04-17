@@ -47,9 +47,10 @@ DB")
                     prod.image_front_thumb=prod_index.get('image_front_thumb_url', "")
                     prod.image_nutrition=prod_index.get('image_nutrition_url', "")
                     prod.nutrition_grades=prod_index.get('nutrition_grades', "")
+                    prod.url=prod_index.get('url', "")
                     prod.save()
                     print(f"The product {prod.name} has been inserted in \
-    the DB")
+the DB")
             else:
                 print(f"The category {cat.name} is not present in OFF\
 API. No products will be inserted in the database")
