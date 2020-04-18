@@ -7,43 +7,46 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('food_substitute', '0001_initial'),
+        ("food_substitute", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='products',
-            name='image_front',
+            model_name="products",
+            name="image_front",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='image_front_thumb',
+            model_name="products",
+            name="image_front_thumb",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='image_nutrition',
+            model_name="products",
+            name="image_nutrition",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='name',
+            model_name="products",
+            name="name",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='nutrition_grades',
+            model_name="products",
+            name="nutrition_grades",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
-            model_name='products',
-            name='url',
+            model_name="products",
+            name="url",
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AlterField(
-            model_name='products',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='food_substitute.Category'),
+            model_name="products",
+            name="category",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="food_substitute.Category",
+            ),
         ),
     ]
