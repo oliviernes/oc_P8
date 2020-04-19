@@ -34,9 +34,9 @@ class Command(BaseCommand):
 
         for categor in CATEGORIES:
             infos_prod = self.search_data(categor)
-            cat = Category(name=categor)
 
             if len(infos_prod) > 0:
+                cat = Category(name=categor)
                 cat.save()
                 print(f"The category {cat.name} has been insterted in the DB")    
                 for i in range(250):
@@ -64,6 +64,6 @@ the DB"
                         prod.category.add(Category.objects.get(id=cat.id))
             else:
                 print(
-                    f"The category {cat.name} is not present in OFF\
+                    f"The category {categor} is not present in OFF\
 API. No products will be inserted in the database"
                 )
