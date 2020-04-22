@@ -24,7 +24,7 @@ CATEGORIES = [
     "Pizzas tartes salées et quiches",
     "Céréales en grains",
     "Foies gras",
-    "Yaourts aux fruits",
+    "Biscuits",
     "Tartes",
     "Aliments pour bébé",
     "Soupes de légumes",
