@@ -28,10 +28,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item" style="margin-right:5rem">
-                            <form class="form-inline justify-content-center">
+                            <form class="form-inline justify-content-center" action="{% url 'search' %}" method="get">
                             <div class="form-group">
                             <input type="text" style="width:150px" class="input-sm form-control"
-                            placeholder="Chercher">
+                            placeholder="Chercher" name="query">
                             </div>
                             </form>
                         </li>
@@ -50,7 +50,7 @@
                 <div class="row col-lg-12 mx-auto justify-content-center image" {% block bg %}{% endblock %}>
                     {% block image %}{% endblock %}
                     <h2 id="title_detail" class="row justify-content-center">
-                        <span>{{ name }}<span class='spacer'></span>
+                        <span>{{ product.name }}<span class='spacer'></span>
                     </h2>
                 </div>
                 <section class="page-section bg-primary">

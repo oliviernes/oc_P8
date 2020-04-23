@@ -1,0 +1,44 @@
+{% extends 'food_substitute/base.html' %}
+
+{% block bg %} style="background: black" {% endblock %}
+{% block image %}<img src="{{ product.image }}" alt="image"\
+ />{% endblock %}
+
+{% block infos %}
+    <div class="row col-lg-12 mt-n5">
+    {% if product is None %}
+        <h2>{{title_prod_missing}}</h2>
+    {% else %}
+        <h2 class="justify-content-center row col-lg-12">Vous pouvez \
+remplaçer cet aliment par:</h2>
+        {% if better is True %}
+            <div class=container>
+                <div class="row">
+                    {% for prod in better_prods %}                    
+                        <div class="col-lg-4 col-md-6 p-1">
+                            <div class="container">
+                                <a href="{% url 'detail' \
+product_id=prod.id %}">
+                                {% if prod.image_small is none %}
+                                    <img src="{% static\
+'food_substitute/img/logo_pur_beurre.png' %}" alt="{{ prod.name }}">
+                                {% else %}
+                                    <img src="{{ prod.image_small }}" \
+alt="{{ prod.name }}" />
+                                {% endif %}
+                                </a>
+                                <h4>
+                                    {{ prod.name }}
+                                </h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p> Il n'y a pas de produits plus sain en base de donnée</p>
+        {% endif %}
+    {% endif %}
+    </div>
+{% endblock %}
+
