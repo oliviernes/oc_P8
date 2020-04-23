@@ -44,10 +44,10 @@ class Command(BaseCommand):
                     """Add an if statements to not duplicate products entry in the db"""
                     if len(Products.objects.filter(code=prod_index["code"])) == 0:
                         prod = Products(code=prod_index["code"])
-                        prod.name = prod_index.get("product_name_fr", "")
-                        prod.image_front = prod_index.get("image_front_url", "")
+                            prod.name = prod_index.get("product_name_fr", "")
+                        prod.image_front = prod_index.get("image_url", "")
                         prod.image_front_thumb = prod_index.get(
-                            "image_front_thumb_url", ""
+                            "image_small_url", ""
                         )
                         prod.image_nutrition = prod_index.get("image_nutrition_url", "")
                         prod.nutrition_grades = prod_index.get("nutrition_grades", "")
