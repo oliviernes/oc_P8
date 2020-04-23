@@ -15,4 +15,4 @@ class Products(models.Model):
     image = models.URLField(null=True)
     image_small = models.URLField(null=True)
     image_nutrition = models.URLField(null=True)
-    url = models.URLField(null=True)
+    url = models.URLField(max_length=255, null=True)
