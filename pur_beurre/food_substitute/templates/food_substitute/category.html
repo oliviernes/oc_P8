@@ -9,14 +9,13 @@
     {% if product is None %}
         <h2>{{title_prod_missing}}</h2>
     {% else %}
-        <h2 class="justify-content-center row col-lg-12">Vous pouvez \
-remplaçer cet aliment par:</h2>
+        <h2 class="justify-content-center row col-lg-12">Vous pouvez remplaçer cet aliment par:</h2>
         {% if better is True %}
             <div class=container>
                 <div class="row">
                     {% for prod in better_prods %}                    
                         <div class="col-lg-4 col-md-6 p-1">
-                            <div class="container">
+                            <div class="products">
                                 <a href="{% url 'detail' \
 product_id=prod.id %}">
                                 {% if prod.image_small is none %}
@@ -25,12 +24,13 @@ product_id=prod.id %}">
                                 {% else %}
                                     <img src="{{ prod.image_small }}" \
 alt="{{ prod.name }}" />
+                                    <span class="nutri-badge">{{ prod.nutrition_grades }}</span>
                                 {% endif %}
                                 </a>
+                            </div>
                                 <h4>
                                     {{ prod.name }}
                                 </h4>
-                            </div>
                         </div>
                     {% endfor %}
                 </div>

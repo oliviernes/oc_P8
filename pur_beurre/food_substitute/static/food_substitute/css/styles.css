@@ -55,7 +55,7 @@ html {
 }
 
 /*
-Customised CSS:
+*******************Customised CSS:**************************************
 */
 
 .image 
@@ -110,8 +110,28 @@ section.head {
   background-repeat: no-repeat;
 }
 
+.products{
+  display: inline-block; /* keeps the img with the badge if the img is forced to a new line */
+  position: relative;
+  padding-top:20px;
+}
+
+.nutri-badge{
+  position: absolute;
+  right:-20px;
+  top:10px;
+  padding:5px 10px;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-size: 20px;
+  text-transform: capitalize;
+  background: #9a4119;
+  color: #FFFFFF;
+  font-weight: bolder;
+}
+
 /*
-end cusomized CSS
+**************************end cusomized CSS*****************************
 */
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
