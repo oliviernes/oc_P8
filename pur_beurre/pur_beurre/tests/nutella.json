@@ -1,0 +1,87 @@
+[
+{
+    "model": "food_substitute.products",
+    "pk": 57493,
+    "fields": {
+        "code": "3017620422003",
+        "name": "",
+        "nutrition_grades": "",
+        "image": "",
+        "image_small": "",
+        "image_nutrition": "",
+        "url": "",
+        "category": [
+            274,
+            250
+        ]
+    }
+},
+{
+    "model": "food_substitute.products",
+    "pk": 57494,
+    "fields": {
+        "code": "3017620420047",
+        "name": "Nutella",
+        "nutrition_grades": "e",
+        "image": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg",
+        "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg",
+        "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/0047/nutrition_fr.124.400.jpg",
+        "url": "https://fr-en.openfoodfacts.org/product/3017620420047/nutella-ferrero",
+        "category": [
+            274,
+            250
+        ]
+    }
+},
+{
+    "model": "food_substitute.products",
+    "pk": 57495,
+    "fields": {
+        "code": "3017620425035",
+        "name": "Nutella",
+        "nutrition_grades": "e",
+        "image": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400.jpg",
+        "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.200.jpg",
+        "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/5035/nutrition_en.114.400.jpg",
+        "url": "https://fr-en.openfoodfacts.org/product/3017620425035/nutella-ferrero",
+        "category": [
+            274,
+            250
+        ]
+    }
+},
+{
+    "model": "food_substitute.products",
+    "pk": 57496,
+    "fields": {
+        "code": "3017620421006",
+        "name": "Nutella",
+        "nutrition_grades": "e",
+        "image": "https://static.openfoodfacts.org/images/products/301/762/042/1006/front_fr.158.400.jpg",
+        "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/1006/front_fr.158.200.jpg",
+        "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/1006/nutrition_fr.137.400.jpg",
+        "url": "https://fr-en.openfoodfacts.org/product/3017620421006/nutella-ferrero",
+        "category": [
+            274,
+            250
+        ]
+    }
+},
+{
+    "model": "food_substitute.products",
+    "pk": 57497,
+    "fields": {
+        "code": "8001505005592",
+        "name": "Nocciolata P\u00e2te \u00e0 tartiner au cacao et noisettes",
+        "nutrition_grades": "d",
+        "image": "https://static.openfoodfacts.org/images/products/800/150/500/5592/front_fr.79.400.jpg",
+        "image_small": "https://static.openfoodfacts.org/images/products/800/150/500/5592/front_fr.79.200.jpg",
+        "image_nutrition": "https://static.openfoodfacts.org/images/products/800/150/500/5592/nutrition_fr.80.400.jpg",
+        "url": "https://fr-en.openfoodfacts.org/product/8001505005592/nocciolata-pate-a-tartiner-au-cacao-et-noisettes-rigoni-di-asiago",
+        "category": [
+            274,
+            250
+        ]
+    }
+}
+]
