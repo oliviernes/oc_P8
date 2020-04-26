@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from food_substitute.models import Category, Products
 from food_substitute.config import CATEGORIES
+
 import requests
 
 
@@ -30,12 +31,11 @@ class Command(BaseCommand):
 
         return prod_cat
 
-    def handle(self, *args, **options):
+    def populate(self, infos_prod, categor):
+        "Populate the DB with the first 250 products of a category \
+from the API"
 
-        for categor in CATEGORIES:
-            infos_prod = self.search_data(categor)
-
-            if len(infos_prod) > 0:
+        if len(infos_prod) > 0:
                 cat = Category(name=categor)
                 cat.save()
                 print(f"The category {cat.name} has been insterted in the DB")    
@@ -62,8 +62,14 @@ the DB"
                     else:
                         prod = Products.objects.get(code=prod_index["code"])
                         prod.category.add(Category.objects.get(id=cat.id))
-            else:
-                print(
-                    f"The category {categor} is not present in OFF\
-API. No products will be inserted in the database"
-                )
+        else:
+            print(
+                f"The category {categor} is not present in OFF\
+    API. No products will be inserted in the database"
+            )
+
+    def handle(self, *args, **options):
+
+        for categor in CATEGORIES:
+            infos_prod = self.search_data(categor)
+            self.populate(infos_prod, categor)
