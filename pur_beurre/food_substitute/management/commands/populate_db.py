@@ -38,8 +38,8 @@ from the API"
         if len(infos_prod) > 0:
                 cat = Category(name=categor)
                 cat.save()
-                print(f"The category {cat.name} has been insterted in the DB")    
-                for i in range(250):
+                print(f"The category {cat.name} has been insterted in the DB")
+                for i in range(len(infos_prod[:250])):
                     prod_index = infos_prod[i]
                     """Add an if statements to not duplicate products entry in the db"""
                     if len(Products.objects.filter(code=prod_index["code"])) == 0:
