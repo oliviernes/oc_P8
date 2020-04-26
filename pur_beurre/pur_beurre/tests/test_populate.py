@@ -32,14 +32,16 @@ def test_duplicate_products():
 
 @mark.django_db
 def test_fields_missing(db_feed, nutella):
+    """Test if a product with missing fields can populate the db and \
+if the length of the API's answer is <250 products"""
     
-    category="pâtes à tartiner au chocolat"
     Fake_API_response=[nutella[0]['fields']]
     
-    db_feed.populate(Fake_API_response, category)
+    db_feed.populate(Fake_API_response, "category")
     prod=Products.objects.all()[0]
     
     assert prod.code == "3017620422003"
     assert prod.name == ""
     assert prod.url == ""
-    assert prod.image_small ==""    
+    assert prod.image_small ==""
+
