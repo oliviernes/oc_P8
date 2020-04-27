@@ -23,7 +23,8 @@ def disclaimer(request):
 def search(request):
     query = request.GET.get("query")
     if not query:
-        context = {"message": "Veuillez entrez un produit"}
+        product=None
+        context = {"product": product, "message": "Veuillez entrez un produit"}
     else:
         product = Products.objects.filter(name__contains=query)
         better_prods=[]
@@ -33,7 +34,7 @@ def search(request):
 same name are in the database"""
             product=product[0]
             """Select products belongings to the different categories \
-of product selected"""
+of the product selected"""
             categories = Category.objects.filter(products__name__contains=query)
             prods=[]
             for categ in categories:

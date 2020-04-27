@@ -19,7 +19,7 @@ def nutella():
 @fixture
 def db_feed():
     return Command()
-   
+
 @mark.django_db
 def test_duplicate_products():
     """Test if the database have duplicate products"""

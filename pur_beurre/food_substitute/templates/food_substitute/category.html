@@ -1,18 +1,28 @@
 {% extends 'food_substitute/base.html' %}
 
+
 {% block bg %} style="background: black" {% endblock %}
-{% block image %}<img src="{{ product.image }}" alt="image"\
- />{% endblock %}
+{% block image %}
+    {% if product != None %}
+        <img src="{{ product.image }}" alt="image"/>
+        <h2 id="title_detail" class="row justify-content-center">
+            <span>{{ product.name }}</span>
+        </h2>
+    {% endif %}
+{% endblock %}
+
 
 {% block infos %}
     <div class="row col-lg-12 mt-n5">
-    {% if product is None %}
+    {% if message == "Veuillez entrez un produit" %}
+        <h2>{{message}}</h2>
+    {% elif product is None %}
         <h2>{{title_prod_missing}}</h2>
     {% else %}
-        <h2 class="justify-content-center row col-lg-12">Vous pouvez remplaçer cet aliment par:</h2>
+        <h2 class="row justify-content-center col-lg-12 col-sm-12">Vous pouvez remplaçer cet aliment par:</h2>
         {% if better is True %}
-            <div class=container>
-                <div class="row">
+            <div class="container col-lg-10 col-sm-6">
+                <div class="row p-4">
                     {% for prod in better_prods %}                    
                         <div class="col-lg-4 col-md-6 p-1">
                             <div class="products">
@@ -41,7 +51,9 @@ alt="{{ prod.name }}" />
                 </div>
             </div>
         {% else %}
-            <p> Il n'y a pas de produits plus sain en base de donnée</p>
+            <div class="row justify-content-center col-lg-12 col-md-12 col-sm-12">
+                <p > Il n'y a pas de produits plus sain en base de donnée</p>
+            </div>
         {% endif %}
     {% endif %}
     </div>
