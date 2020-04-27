@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('food_substitute', '0004_auto_20200423_0829'),
+        ("food_substitute", "0004_auto_20200423_0829"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='products',
-            name='category',
-            field=models.ManyToManyField(to='food_substitute.Category'),
+            model_name="products",
+            name="category",
+            field=models.ManyToManyField(to="food_substitute.Category"),
         ),
         migrations.AlterField(
-            model_name='products',
-            name='url',
+            model_name="products",
+            name="url",
             field=models.URLField(max_length=255, null=True),
         ),
     ]
