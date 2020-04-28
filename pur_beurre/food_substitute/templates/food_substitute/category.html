@@ -4,10 +4,10 @@
 {% block bg %} style="background: black" {% endblock %}
 {% block image %}
     {% if product != None %}
-        <img src="{{ product.image }}" alt="image"/>
+        <a href="{% url 'detail' product.code %}"><img src="{{ product.image }}" alt="image"/>
         <h2 id="title_detail" class="row justify-content-center">
             <span>{{ product.name }}</span>
-        </h2>
+        </h2></a>
     {% endif %}
 {% endblock %}
 
@@ -26,8 +26,7 @@
                     {% for prod in better_prods %}                    
                         <div class="col-lg-4 col-md-6 p-1">
                             <div class="products">
-                                <a href="{% url 'detail' \
-product_id=prod.id %}">
+                                <a href="{% url 'detail' prod.code %}">
                                 {% if prod.image_small is none %}
                                     <img src="{% static\
 'food_substitute/img/logo_pur_beurre.png' %}" alt="{{ prod.name }}">

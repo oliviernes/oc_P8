@@ -13,7 +13,9 @@ def welcome(request):
 
 
 def detail(request, code):
-    context = product_data(code)
+    product=Products.objects.get(code=code)
+
+    context = {"product": product}
     return render(request, "food_substitute/detail.html", context)
 
 

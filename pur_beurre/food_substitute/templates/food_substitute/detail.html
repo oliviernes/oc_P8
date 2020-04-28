@@ -1,17 +1,17 @@
 {% extends 'food_substitute/base.html' %}
 
 {% block bg %} style="background: black" {% endblock %}
-{% block image %}<img src="{{ image }}" alt="image" />{% endblock %}
+{% block image %}<img src="{{ product.image }}" alt="image" />{% endblock %}
 
 {% block infos %}<div class="col-lg-4 ml-auto text-center">
                     <h3 class="mb-3">Nutriscore</h3>
-                    <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ nutrition_grades }}.svg" title="Logo nutriscore" />
+                    <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ product.nutrition_grades }}.svg" title="Logo nutriscore" />
                 </div>
                 <div class="col-lg-4 mr-auto text-center">
-                    <h3 class="mb-auto">Repères nutritionnels</h3>
-                    {% if image_nutrition %}{{ spaceless }}
+                    <h3 class="mb-auto">Repères nutritionnels pour 100g</h3>
+                    {% if product.image_nutrition %}{{ spaceless }}
                     <br>
-                    <div><img src="{{ image_nutrition }}" title="Repères nutritionnels" /></div>
+                    <div><img src="{{ product.image_nutrition }}" title="Repères nutritionnels" /></div>
                     {% else %}
                     <img src="https://via.placeholder.com/250x100?text=Désolé+pas+d'infos+disponibles+..." title="Repères nutritionnels" />
                     {% endif %}{{ endspaceless }}
