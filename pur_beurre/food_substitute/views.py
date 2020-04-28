@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # ~ from django.views import generic
 from .models import Category, Products
@@ -47,6 +48,14 @@ of the product selected"""
                         and p.nutrition_grades < product.nutrition_grades
                     ):
                         better_prods.append(p)
+            paginator=Paginator(better_prods, 9)
+            page = request.GET.get('page')
+            try:
+                better_p=paginator.page(page)
+            except PageNotAnInteger:
+                better_p=paginator.page(1)
+            except EmptyPage:
+                better_p=paginator.page(paginator.num_pages)
             if len(better_prods) > 0:
                 better = True
             else:
@@ -57,10 +66,11 @@ of the product selected"""
 
         context = {
             "product": product,
-            "better_prods": better_prods,
-            "title_prod_missing": f"Il n'y a pas de produits '{query}' dans la base\
- de données",
+            "better_prods": better_p,
+            "title_prod_missing": f"Il n'y a pas de produits '{query}' dans la base de données",
             "better": better,
+            'paginate': True,
+            'query': query,
         }
 
     return render(request, "food_substitute/category.html", context)

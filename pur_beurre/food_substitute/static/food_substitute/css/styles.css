@@ -130,6 +130,13 @@ section.head {
   font-weight: bolder;
 }
 
+.linko {
+  font-size: 20px;
+  text-transform: capitalize;
+  color: #FFFFFF;
+  font-weight: bolder;
+}
+
 /*
 **************************end cusomized CSS*****************************
 */

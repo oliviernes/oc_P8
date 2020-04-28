@@ -57,5 +57,21 @@ alt="{{ prod.name }}" />
         {% endif %}
     {% endif %}
     </div>
-{% endblock %}
+    <div class="row justify-content-center col-lg-12 pagination">
+        <span class="step-links">
+            {% if better_prods.has_previous %}
+                <strong><em><a class="linko" href="?query={{query}}&page=1">&laquo; Premier</a>
+                <a class="linko" href="?query={{query}}&page={{ better_prods.previous_page_number }}">Précédent</a></em></strong>
+            {% endif %}
 
+            <span class="current">
+                Page {{ better_prods.number }} de {{ better_prods.paginator.num_pages }}
+            </span>
+
+            {% if better_prods.has_next %}
+                <strong><em><a class="linko" href="?query={{query}}&page={{ better_prods.next_page_number }}" title="tricks">Suivant</a>
+                <a class="linko" href="?query={{query}}&page={{ better_prods.paginator.num_pages }}">Dernier &raquo;</a></em></strong>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
