@@ -1,9 +1,7 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.paginator import Paginator, PageNotAnInteger
 
-# ~ from django.views import generic
 from .models import Category, Products
-from .forms import CategoryForm
 
 # Create your views here.
 
