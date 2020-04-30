@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator, PageNotAnInteger
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Category, Products
 
@@ -63,6 +63,7 @@ of the product selected"""
         else:
             product = None
             prods = None
+            better_p= None
 
         context = {
             "product": product,
