@@ -15,10 +15,10 @@
                         <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
                         </p>
                         <a class="nav-item" style="margin-right:5rem">
-                            <form class="form-inline justify-content-center">
+                            <form class="form-inline justify-content-center" action="{% url 'search' %}" method="get">
                             <div class="form-group">
                             <input type="text" style="width:250px" class="input-sm form-control"
-                            placeholder="Produit">
+                            placeholder="Produit" name="query">
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm"><span
                             class="glyphicon glyphicon-eye-open"></span> Chercher</button>
