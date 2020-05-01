@@ -48,12 +48,12 @@ from the API"
                 """Add an if statements to not duplicate products entry in the db"""
                 if len(Products.objects.filter(code=prod_index["code"])) == 0:
                     prod = Products(code=prod_index["code"])
-                    prod.name = prod_index.get("product_name_fr", "")
-                    prod.image = prod_index.get("image_url", "")
-                    prod.image_small = prod_index.get("image_small_url", "")
-                    prod.image_nutrition = prod_index.get("image_nutrition_url", "")
+                    prod.name = prod_index.get("product_name_fr", "")[:255]
+                    prod.image = prod_index.get("image_url", "")[:200]
+                    prod.image_small = prod_index.get("image_small_url", "")[:200]
+                    prod.image_nutrition = prod_index.get("image_nutrition_url", "")[:200]
                     prod.nutrition_grades = prod_index.get("nutrition_grades", "")
-                    prod.url = prod_index.get("url", "")
+                    prod.url = prod_index.get("url", "")[:255]
                     prod.save()
                     prod.category.add(Category.objects.get(name=cat.name))
                     prod.save()
