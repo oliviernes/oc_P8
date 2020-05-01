@@ -4,6 +4,10 @@ from pytest import mark
 
 from food_substitute.models import Products
 
+####################
+###  search view ###
+####################
+
 @mark.django_db
 def test_search_missing_prod():
 
@@ -44,6 +48,21 @@ def test_search_partial_query():
 
     c = Client()
     response = c.get("/search/?query=Nutel")
+    prod = response.context["product"]
+
+    assert prod.name == "Nutella"
+
+###################
+### detail view ###
+###################
+
+@mark.django_db
+def test_detail_product():
+
+    prod = Products.objects.create(name="Nutella", code="123456789")
+
+    c=Client()
+    response = c.get("/product/123456789")
     prod = response.context["product"]
 
     assert prod.name == "Nutella"
