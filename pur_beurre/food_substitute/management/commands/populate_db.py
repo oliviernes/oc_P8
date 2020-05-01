@@ -3,7 +3,7 @@ from food_substitute.models import Category, Products
 from food_substitute.config import CATEGORIES
 
 import requests
-
+import pdb
 
 class Command(BaseCommand):
     help = "Populate the db with products' data using the Openfoodfacts API"
@@ -36,9 +36,13 @@ class Command(BaseCommand):
 from the API"
 
         if len(infos_prod) > 0:
+            """Add an if statements to not duplicate categories entries in the db"""
             cat = Category(name=categor)
-            cat.save()
-            print(f"The category {cat.name} has been insterted in the DB")
+            if len(Category.objects.filter(name=categor)) == 0:
+                cat.save()
+                print(f"The category {cat.name} has been insterted in the DB")
+            else:
+                print(f"The category {cat.name} has already been insterted in the DB")
             for i in range(len(infos_prod[:150])):
                 prod_index = infos_prod[i]
                 """Add an if statements to not duplicate products entry in the db"""
@@ -51,7 +55,7 @@ from the API"
                     prod.nutrition_grades = prod_index.get("nutrition_grades", "")
                     prod.url = prod_index.get("url", "")
                     prod.save()
-                    prod.category.add(Category.objects.get(id=cat.id))
+                    prod.category.add(Category.objects.get(name=cat.name))
                     prod.save()
                     print(
                         f"The product {prod.name} has been inserted in \
@@ -59,7 +63,7 @@ the DB"
                     )
                 else:
                     prod = Products.objects.get(code=prod_index["code"])
-                    prod.category.add(Category.objects.get(id=cat.id))
+                    prod.category.add(Category.objects.get(name=cat.name))
         else:
             print(
                 f"The category {categor} is not present in OFF\
