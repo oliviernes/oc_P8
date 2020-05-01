@@ -15,7 +15,7 @@
     "pk": 57494,
     "fields": {
         "code": "3017620420047",
-        "name": "Nutella",
+        "product_name_fr": "Nutella",
         "nutrition_grades": "e",
         "image": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg",
         "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg",
