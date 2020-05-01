@@ -32,12 +32,12 @@
     "pk": 57495,
     "fields": {
         "code": "3017620425035",
-        "name": "Nutella",
+        "product_name_fr": "NutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutella",
         "nutrition_grades": "e",
-        "image": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400.jpg",
-        "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.200.jpg",
-        "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/5035/nutrition_en.114.400.jpg",
-        "url": "https://fr-en.openfoodfacts.org/product/3017620425035/nutella-ferrero",
+        "image_url": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400.jpg",
+        "image_small_url": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400.jpg",
+        "image_nutrition_url": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400/images/products/301/762/042/5035/front_en.73.400.jpg",
+        "url": "https://fr-en.openfoodfacts.org/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero/product/3017620425035/nutella-ferrero",
         "category": [
             274,
             250

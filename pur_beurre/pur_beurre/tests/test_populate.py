@@ -50,7 +50,7 @@ if the length of the API's answer is <250 products"""
 
 @mark.django_db
 def test_printing_category_inserted(db_feed, nutella, capsys):
-    """ test  """
+    """ test the printing of inserted categories """
     Fake_API_response = [nutella[1]["fields"]]
     Products.objects.create(code='3017620420047')
 
@@ -59,3 +59,14 @@ def test_printing_category_inserted(db_feed, nutella, capsys):
     out, err = capsys.readouterr()
     assert out == "The category pâtes à tartiner au chocolat has been \
 insterted in the DB\n"
+
+@mark.django_db
+def test_product_with_long_fields(db_feed, nutella):
+
+    Fake_API_response = [nutella[2]["fields"]]
+
+    db_feed.populate(Fake_API_response, "category")
+    prod = Products.objects.all()[0]
+
+    assert prod.code == "3017620425035"
+    assert prod.name == "NutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNut"
