@@ -35,11 +35,23 @@
                             </div>
                             </form>
                         </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about"><i class="fas fa-user-ninja"></i></a></li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'my_account' %}">
+                        <i class="fas fa-user-ninja"></i></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><img
                             src="{% static 'food_substitute/img/Carrot.png' %}" height="30"
                             width="30"></a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio"><i class="fas fa-sign-out-alt"></i></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a></li>
+                        {% else %}
+                        <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'login' %}">
+                        <i class="fas fa-sign-in-alt"></i></a></li>
+                        <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'signup' %}">
+                        <i class="fas fa-user-plus"></i></a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -3,12 +3,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Category, Products
 
-# Create your views here.
-
-
 def welcome(request):
     return render(request, "food_substitute/welcome.html")
-
 
 def detail(request, code):
     product=Products.objects.get(code=code)
@@ -75,3 +71,4 @@ of the product selected"""
         }
 
     return render(request, "food_substitute/category.html", context)
+
