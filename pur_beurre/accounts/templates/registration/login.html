@@ -1,0 +1,13 @@
+{% extends "food_substitute/base.html" %}
+
+{% block infos %}
+
+  <div class="col-lg-12">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="login" />
+  </form>
+  </div>
+   
+{% endblock %}
