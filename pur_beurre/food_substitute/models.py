@@ -6,6 +6,8 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return self.name
 
 class Products(models.Model):
     code = models.CharField(max_length=13)
@@ -16,3 +18,6 @@ class Products(models.Model):
     image_small = models.URLField(null=True)
     image_nutrition = models.URLField(null=True)
     url = models.URLField(max_length=255, null=True)
+
+    def __str__(self):
+        return self.name
