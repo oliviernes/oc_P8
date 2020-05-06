@@ -5,6 +5,7 @@ from pytest import fixture, mark
 from food_substitute.management.commands.populate_db import Command
 from food_substitute.models import Products
 
+
 @fixture
 def nutella():
     """Mock API response of nutella products"""
@@ -48,17 +49,22 @@ if the length of the API's answer is <250 products"""
     assert prod.url == ""
     assert prod.image_small == ""
 
+
 @mark.django_db
 def test_printing_category_inserted(db_feed, nutella, capsys):
     """ test the printing of inserted categories """
     Fake_API_response = [nutella[1]["fields"]]
-    Products.objects.create(code='3017620420047')
+    Products.objects.create(code="3017620420047")
 
     db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
 
     out, err = capsys.readouterr()
-    assert out == "The category pâtes à tartiner au chocolat has been \
+    assert (
+        out
+        == "The category pâtes à tartiner au chocolat has been \
 insterted in the DB\n"
+    )
+
 
 @mark.django_db
 def test_product_with_long_fields(db_feed, nutella):
@@ -69,4 +75,7 @@ def test_product_with_long_fields(db_feed, nutella):
     prod = Products.objects.all()[0]
 
     assert prod.code == "3017620425035"
-    assert prod.name == "NutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNut"
+    assert (
+        prod.name
+        == "NutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNut"
+    )

@@ -20,9 +20,9 @@ from accounts import views
 urlpatterns = [
     path("", include("food_substitute.urls")),
     path("admin/", admin.site.urls),
-    path("accounts/", include('django.contrib.auth.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("my_account/", views.my_account, name="my_account"),
     path("login/", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
-    path("signup/", views.signup_view, name="signup")
+    path("signup/", views.signup_view, name="signup"),
 ]

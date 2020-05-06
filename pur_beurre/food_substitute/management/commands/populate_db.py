@@ -5,6 +5,7 @@ from food_substitute.config import CATEGORIES
 import requests
 import pdb
 
+
 class Command(BaseCommand):
     help = "Populate the db with products' data using the Openfoodfacts API"
 
@@ -51,7 +52,9 @@ from the API"
                     prod.name = prod_index.get("product_name_fr", "")[:255]
                     prod.image = prod_index.get("image_url", "")[:200]
                     prod.image_small = prod_index.get("image_small_url", "")[:200]
-                    prod.image_nutrition = prod_index.get("image_nutrition_url", "")[:200]
+                    prod.image_nutrition = prod_index.get("image_nutrition_url", "")[
+                        :200
+                    ]
                     prod.nutrition_grades = prod_index.get("nutrition_grades", "")
                     prod.url = prod_index.get("url", "")[:255]
                     prod.save()

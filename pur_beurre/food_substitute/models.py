@@ -9,6 +9,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Products(models.Model):
     code = models.CharField(max_length=13)
     category = models.ManyToManyField(Category)

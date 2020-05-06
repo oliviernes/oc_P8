@@ -3,11 +3,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Category, Products
 
+
 def welcome(request):
     return render(request, "food_substitute/welcome.html")
 
+
 def detail(request, code):
-    product=Products.objects.get(code=code)
+    product = Products.objects.get(code=code)
 
     context = {"product": product}
     return render(request, "food_substitute/detail.html", context)
@@ -44,14 +46,14 @@ of the product selected"""
                         and p.nutrition_grades < product.nutrition_grades
                     ):
                         better_prods.append(p)
-            paginator=Paginator(better_prods, 9)
-            page = request.GET.get('page')
+            paginator = Paginator(better_prods, 9)
+            page = request.GET.get("page")
             try:
-                better_p=paginator.page(page)
+                better_p = paginator.page(page)
             except PageNotAnInteger:
-                better_p=paginator.page(1)
+                better_p = paginator.page(1)
             except EmptyPage:
-                better_p=paginator.page(paginator.num_pages)
+                better_p = paginator.page(paginator.num_pages)
             if len(better_prods) > 0:
                 better = True
             else:
@@ -59,16 +61,15 @@ of the product selected"""
         else:
             product = None
             prods = None
-            better_p= None
+            better_p = None
 
         context = {
             "product": product,
             "better_prods": better_p,
             "title_prod_missing": f"Il n'y a pas de produits '{query}' dans la base de données",
             "better": better,
-            'paginate': True,
-            'query': query,
+            "paginate": True,
+            "query": query,
         }
 
     return render(request, "food_substitute/category.html", context)
-
