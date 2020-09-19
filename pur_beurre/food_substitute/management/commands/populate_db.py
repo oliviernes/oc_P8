@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def search_data(self, category):
 
-        "Search product's data for a given category over the API openfoodfacts"
+        """Search product's data for a given category over the API openfoodfacts"""
 
         search_param = {
             "search_terms": category,
@@ -33,8 +33,8 @@ class Command(BaseCommand):
         return prod_cat
 
     def populate(self, infos_prod, categor):
-        "Populate the DB with the first 250 products of a category \
-from the API"
+        """Populate the DB with the first 250 products of a category 
+        from the API"""
 
         if len(infos_prod) > 0:
             """Add an if statements to not duplicate categories entries in the db"""
