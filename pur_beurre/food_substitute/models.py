@@ -20,5 +20,11 @@ class Products(models.Model):
     image_nutrition = models.URLField(null=True)
     url = models.URLField(max_length=255, null=True)
 
+    def display_category(self):
+        """Create a string for the Category. This is required to display category in Admin."""
+        return ', '.join(category.name for category in self.category.all()[:3])
+
+    display_category.short_description = 'Category'
+
     def __str__(self):
         return self.name

@@ -6,4 +6,4 @@ admin.site.register(Category)
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'nutrition_grades')
+    list_display = ('name', 'nutrition_grades', 'display_category')
