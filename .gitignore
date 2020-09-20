@@ -129,6 +129,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-pur_beurre/food_substitute/static/food_substitute/assets/img/bg-masthead2.jpg
+#check before production deploy:
+
 pur_beurre/food_substitute/static/food_substitute/img/colette-tatou-full.png
 pur_beurre/food_substitute/static/food_substitute/img/ratatouille-portrait.jpg
+pur_beurre/food_substitute/forms.py
+pur_beurre/food_substitute/tests.py
+pur_beurre/pur_beurre/tests/api_response.json
