@@ -17,7 +17,7 @@ class Command(BaseCommand):
             "search_terms": category,
             "search_tag": "categories_tag",
             "sort_by": "unique_scans_n",
-            "page_size": 250,
+            "page_size": 150,
             "json": 1,
         }
 
