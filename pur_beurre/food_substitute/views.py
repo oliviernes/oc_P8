@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -37,8 +39,14 @@ same name are in the database"""
             """Select products belongings to the different categories \
 of the product selected"""
             categories = Category.objects.filter(products__name__contains=query)
+            """Select categories above 20% occurencies"""
+            categories_sorted = Counter(categories).most_common()
+            categories_most = []
+            for elem in categories_sorted:
+                if elem[1]/len(categories) > 0.2:
+                    categories_most.append(elem[0])
             prods = []
-            for categ in categories:
+            for categ in categories_most:
                 products = Products.objects.filter(category__name=categ.name)
                 prods.append(products)
             for prod in prods:
@@ -48,6 +56,7 @@ of the product selected"""
                         and p.nutrition_grades < product.nutrition_grades
                     ):
                         better_prods.append(p)
+            # better_prods = list(set(better_prods))
             paginator = Paginator(better_prods, 9)
             page = request.GET.get("page")
             try:
