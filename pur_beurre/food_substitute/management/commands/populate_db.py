@@ -33,7 +33,7 @@ class Command(BaseCommand):
         return prod_cat
 
     def populate(self, infos_prod, categor):
-        """Populate the DB with the first 250 products of a category 
+        """Populate the DB with the first 150 products of a category 
         from the API"""
 
         if len(infos_prod) > 0:
