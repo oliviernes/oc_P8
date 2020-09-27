@@ -1,9 +1,14 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+
+import pdb
+
 import unittest
 import time
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
+    fixtures = ['dumpy_content_reduced_exclude']
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -16,7 +21,7 @@ class NewVisitorTest(unittest.TestCase):
         # Mell has heard about a website to get healthier products. She goes
         # to check out its homepage
 
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the form bar in the header and in the center of the page
 
@@ -46,14 +51,20 @@ class NewVisitorTest(unittest.TestCase):
         # healthier products of the same category.
 
         inputbox_center.send_keys(Keys.ENTER)
-        time.sleep(5)
+        time.sleep(3)
 
         prod_text = self.browser.find_element_by_tag_name('h4').text
-        self.assertIn('Protein', prod_text)
-
-        self.fail('Finish the test!')
+        self.assertIn('Nocciolata', prod_text)
 
         # She selects a product and get a new page with the detail of the product
+
+        link = self.browser.find_element_by_xpath('//a[@href="/product/8001505005592"]')
+        
+        link.click()
+
+        time.sleep(3)
+
+        self.fail('Finish the test!')
 
         # She enters a new product in the textbox in the top of the screen.
 
@@ -62,6 +73,3 @@ class NewVisitorTest(unittest.TestCase):
         # Mell saves a product
 
         # Satisfied, she goes back to sleep
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
