@@ -8,7 +8,8 @@ import unittest
 import time
 
 class NewVisitorTest(LiveServerTestCase):
-    fixtures = ['dumpy_content_reduced_exclude']
+    # fixtures = ['dumpy_content_reduced_exclude']
+    fixtures = ['dumpy_content_exclude']
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -64,9 +65,22 @@ class NewVisitorTest(LiveServerTestCase):
 
         time.sleep(3)
 
-        self.fail('Finish the test!')
-
         # She enters a new product in the textbox in the top of the screen.
+
+
+        inputbox = self.browser.find_element_by_name('query')
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Chercher'
+        )
+
+        inputbox.send_keys("Pim's framboise")
+
+        inputbox.send_keys(Keys.ENTER)
+ 
+        time.sleep(3)
+
+        self.fail('Finish the test!')
 
         # The page updates and show a new list of healthier products.
 
