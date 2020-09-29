@@ -97,3 +97,17 @@ def test_welcome():
     assert response.status_code == 200
     assert response.templates[0].name == "food_substitute/welcome.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
+####################
+### account view ###
+####################
+
+@mark.django_db
+def test_welcome():
+
+    c = Client()
+    response = c.get("/signup")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "food_substitute/account.html"
+    assert response.templates[1].name == "food_substitute/base.html"

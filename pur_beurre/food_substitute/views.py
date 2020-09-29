@@ -25,6 +25,7 @@ def disclaimer(request):
 
 def search(request):
     query = request.GET.get("query")
+
     if not query:
         product = None
         context = {"product": product, "message": "Veuillez entrez un produit"}

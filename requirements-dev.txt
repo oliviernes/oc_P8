@@ -5,4 +5,4 @@ pgcli==2.2.0
 pylint==2.4.4
 pytest-cov==2.8.1
 selenium==3.141.0
-
+mock==4.0.2

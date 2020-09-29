@@ -24,6 +24,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.browser.get(self.live_server_url)
 
+        time.sleep(4)
+
         # She notices the form bar in the header and in the center of the page
 
         self.assertIn('Pur', self.browser.title)
@@ -52,7 +54,7 @@ class NewVisitorTest(LiveServerTestCase):
         # healthier products of the same category.
 
         inputbox_center.send_keys(Keys.ENTER)
-        time.sleep(3)
+        time.sleep(5)
 
         prod_text = self.browser.find_element_by_tag_name('h4').text
         self.assertIn('Nocciolata', prod_text)
@@ -63,7 +65,7 @@ class NewVisitorTest(LiveServerTestCase):
         
         link.click()
 
-        time.sleep(3)
+        time.sleep(5)
 
         # She enters a new product in the textbox in the top of the screen.
 
@@ -74,16 +76,21 @@ class NewVisitorTest(LiveServerTestCase):
             'Chercher'
         )
 
-        inputbox.send_keys("Pim's framboise")
+        inputbox.send_keys("Véritable petit beurre")
 
         inputbox.send_keys(Keys.ENTER)
  
-        time.sleep(3)
-
-        self.fail('Finish the test!')
+        time.sleep(5)
 
         # The page updates and show a new list of healthier products.
 
-        # Mell saves a product
+        # Mell saves a product (she click in the save link):
+
+        savelink = self.browser.find_element_by_xpath('//a[@href="signup/link"]')
+
+        savelink.click()
+
+        self.fail('Finish the test!')
+
 
         # Satisfied, she goes back to sleep
