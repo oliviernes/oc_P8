@@ -8,8 +8,8 @@ import unittest
 import time
 
 class NewVisitorTest(LiveServerTestCase):
-    # fixtures = ['dumpy_content_reduced_exclude']
-    fixtures = ['dumpy_content_exclude']
+    fixtures = ['dumpy_content_reduced_exclude']
+    # fixtures = ['dumpy_content_exclude']
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -24,7 +24,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.browser.get(self.live_server_url)
 
-        time.sleep(4)
+        time.sleep(2)
 
         # She notices the form bar in the header and in the center of the page
 
@@ -65,7 +65,7 @@ class NewVisitorTest(LiveServerTestCase):
         
         link.click()
 
-        time.sleep(5)
+        time.sleep(2)
 
         # She enters a new product in the textbox in the top of the screen.
 
@@ -80,17 +80,43 @@ class NewVisitorTest(LiveServerTestCase):
 
         inputbox.send_keys(Keys.ENTER)
  
-        time.sleep(5)
+        time.sleep(2)
 
         # The page updates and show a new list of healthier products.
 
-        # Mell saves a product (she click in the save link):
+        # Mell try to save a product. She click on the save link but as she
+        # is not connected, the link send her on the login page:
 
-        savelink = self.browser.find_element_by_xpath('//a[@href="signup/link"]')
+        # savelink = self.browser.find_element_by_xpath('//a[@href="/login/"]')
 
-        savelink.click()
+        save_texts = self.browser.find_elements_by_tag_name('h4')
+
+        # breakpoint()
+
+        save_texts[1].click()
+
+        time.sleep(3)
+
+        # She tries to connect. She enters her username
+        # and a wrong password. Then she clicks on the login button.
+        
+        username = self.browser.find_element_by_id("id_username")
+        password = self.browser.find_element_by_id("id_password")
+
+        username.send_keys('Mell')
+        password.send_keys('XXXXX')
+
+        password.send_keys(Keys.ENTER)
+        
+        time.sleep(5)
+
+        # The system inform her to try again:
+        # Then, she click on the signup button:
+
+        signup = self.browser.find_element_by_id("signup")
+
+        signup.click()
 
         self.fail('Finish the test!')
-
 
         # Satisfied, she goes back to sleep
