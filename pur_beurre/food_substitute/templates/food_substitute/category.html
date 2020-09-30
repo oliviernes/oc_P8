@@ -41,9 +41,10 @@ alt="{{ prod.name }}" />
                                     {{ prod.name }}
                                 </h4>
                                 <h4>
-                                    <a>
+                                    <a href="{% url 'login' %}">
                                         <i class="fas fa-save"></i>
-                                    </a>Sauvegarder
+                                        Sauvegarder
+                                    </a>
                                 </h4>
                         </div>
                     {% endfor %}
@@ -74,5 +75,5 @@ alt="{{ prod.name }}" />
                 {% endif %}
             </span>
         </div>
-    {% endif %}    
+    {% endif %}
 {% endblock %}
