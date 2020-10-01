@@ -23,6 +23,7 @@ def db_feed():
     return Command()
 
 
+## test giving a false positive, not deleted for studying purpose
 @mark.django_db
 def test_duplicate_products():
     """Test if the database have duplicate products"""
