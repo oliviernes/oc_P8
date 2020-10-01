@@ -24,7 +24,7 @@ def test_search_missing_prod():
     assert response.templates[1].name == "food_substitute/base.html"
 
 
-@mark.django_db
+
 def test_search_no_query():
 
     c = Client()
@@ -88,7 +88,7 @@ def test_detail_product():
 ### welcome view ###
 ####################
 
-@mark.django_db
+
 def test_welcome():
 
     c = Client()
@@ -102,7 +102,7 @@ def test_welcome():
 ### login view #####
 ####################
 
-@mark.django_db
+
 def test_login():
 
     c = Client()
@@ -112,11 +112,13 @@ def test_login():
     assert response.templates[0].name == "registration/login.html"
     assert response.templates[1].name == "food_substitute/base.html"
 
+
+
 ####################
 ### signup view ####
 ####################
 
-@mark.django_db
+
 def test_signup():
 
     c = Client()
@@ -125,3 +127,4 @@ def test_signup():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
