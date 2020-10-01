@@ -190,6 +190,10 @@ header.masthead2 h1 {
   }
 }
 
+#signup_title {
+  text-decoration: underline;
+}
+
 /*
 **************************end cusomized CSS*****************************
 */
@@ -299,7 +303,7 @@ sup {
 }
 
 a {
-  color: #200902;
+  color: #212529;
   text-decoration: none;
   background-color: transparent;
 }
