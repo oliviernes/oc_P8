@@ -99,7 +99,7 @@ def test_welcome():
     assert response.templates[1].name == "food_substitute/base.html"
 
 ####################
-### login view ###
+### login view #####
 ####################
 
 @mark.django_db
@@ -110,4 +110,18 @@ def test_login():
 
     assert response.status_code == 200
     assert response.templates[0].name == "registration/login.html"
+    assert response.templates[1].name == "food_substitute/base.html"
+
+####################
+### signup view ####
+####################
+
+@mark.django_db
+def test_signup():
+
+    c = Client()
+    response = c.get("/signup/")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
