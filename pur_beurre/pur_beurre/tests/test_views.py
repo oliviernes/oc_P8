@@ -114,16 +114,18 @@ def test_login():
     assert response.templates[0].name == "registration/login.html"
     assert response.templates[1].name == "food_substitute/base.html"
 
-
 @mark.django_db
-def test_login_redirect_valid_user():
+def test_login_valid_user():
     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
     c = Client()
 
-    response = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
+    response = c.login(username= 'john', password= 'johnpassword')
 
-    assert response.status_code == 302
+    response2 = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
+
+    assert response == True
+    assert response2.status_code == 302
 
 @mark.django_db
 def test_login_wrong_user():
@@ -135,17 +137,6 @@ def test_login_wrong_user():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/login.html"
     assert response.templates[1].name == "food_substitute/base.html"
-
-@mark.django_db
-def test_login_valid_user():
-
-    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-
-    c = Client()
-
-    response = c.login(username= 'john', password= 'johnpassword')
-
-    assert response == True
 
 @mark.django_db
 def test_login_wrong_password():
