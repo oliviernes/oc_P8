@@ -10,7 +10,7 @@ def my_account(request):
     return render(request, "registration/account.html")
 
 
-def signup_view(request):
+def signup_view(request, backend = 'django.contrib.auth.backends.ModelBackend'):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -18,7 +18,7 @@ def signup_view(request):
             # ~ username = form.cleaned_data.get('username')
             # ~ raw_password = form.cleaned_data.get('password1')
             # ~ user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            login(request, user, backend = 'django.contrib.auth.backends.ModelBackend')
             return redirect("my_account")
     else:
         form = SignUpForm()

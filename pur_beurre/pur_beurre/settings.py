@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',       
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'accounts.models.EmailBackend']
 
 
