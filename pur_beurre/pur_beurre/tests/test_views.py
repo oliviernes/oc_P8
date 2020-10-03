@@ -1,4 +1,5 @@
 from django.test import Client
+from django.contrib.auth.models import User
 
 from pytest import mark
 
@@ -8,6 +9,7 @@ from food_substitute.models import Products
 ###  search view ###
 ####################
 
+import pdb
 
 @mark.django_db
 def test_search_missing_prod():
@@ -113,6 +115,62 @@ def test_login():
     assert response.templates[1].name == "food_substitute/base.html"
 
 
+@mark.django_db
+def test_login_redirect_valid_user():
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
+
+    assert response.status_code == 302
+
+@mark.django_db
+def test_login_wrong_user():
+
+    c = Client()
+
+    response = c.post("/login/", {'username': 'tartampion', 'password': 'johnpassword'})
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/login.html"
+    assert response.templates[1].name == "food_substitute/base.html"
+
+@mark.django_db
+def test_login_valid_user():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.login(username= 'john', password= 'johnpassword')
+
+    assert response == True
+
+@mark.django_db
+def test_login_wrong_password():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.login(username= 'john', password= 'wrongpassword')
+
+    response2 = c.post("/login/", {'username': 'john', 'password': 'wrongpassword'})
+
+    assert response == False
+    assert response2.status_code == 200
+    assert response2.templates[0].name == "registration/login.html"
+    assert response2.templates[1].name == "food_substitute/base.html"
+
+@mark.django_db
+def test_login_no_user_recorded():
+
+    c = Client()
+
+    response = c.login(username= 'john', password= 'johnpassword')
+
+    assert response == False
 
 ####################
 ### signup view ####
@@ -127,4 +185,3 @@ def test_signup():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
-
