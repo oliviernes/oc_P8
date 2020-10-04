@@ -97,7 +97,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         time.sleep(3)
 
-        # She tries to connect. She enters her username
+        # She tries to connect. She enters her email
         # and a wrong password. Then she clicks on the login button.
         
         username = self.browser.find_element_by_id("id_username")
@@ -108,14 +108,35 @@ class NewVisitorTest(LiveServerTestCase):
 
         password.send_keys(Keys.ENTER)
         
-        time.sleep(5)
+        time.sleep(3)
 
         # The system inform her to try again:
-        # Then, she click on the signup button:
+        # Then, she click on the signup button because she doesn't have an account:
 
         signup = self.browser.find_element_by_id("signup")
 
         signup.click()
+
+        time.sleep(3)
+
+        # The system display the signup form. She enters her account information:
+
+        username = self.browser.find_element_by_id("id_username")
+        first_name = self.browser.find_element_by_id("id_first_name")
+        email = self.browser.find_element_by_id("id_email")
+        password1 = self.browser.find_element_by_id("id_password1")
+        password2 = self.browser.find_element_by_id("id_password2")
+
+        username.send_keys('Mell2010')
+        first_name.send_keys('Mell')
+        email.send_keys('mell2010@gmail.com')
+        password1.send_keys('monsupermdp1234')
+        password2.send_keys('monsupermdp1234')
+
+        button = self.browser.find_elements_by_tag_name('button')
+        button[1].click()
+
+        time.sleep(3)
 
         self.fail('Finish the test!')
 
