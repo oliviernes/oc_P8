@@ -2,7 +2,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 
-from accounts.forms import SignUpForm
+from accounts.forms import SignUpForm, EmailLoginForm
 # Create your views here.
 
 
@@ -10,7 +10,7 @@ def my_account(request):
     return render(request, "registration/account.html")
 
 
-def signup_view(request):
+def signup_view(request, backend = 'django.contrib.auth.backends.ModelBackend'):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -18,7 +18,7 @@ def signup_view(request):
             # ~ username = form.cleaned_data.get('username')
             # ~ raw_password = form.cleaned_data.get('password1')
             # ~ user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            login(request, user, backend = 'django.contrib.auth.backends.ModelBackend')
             return redirect("my_account")
     else:
         form = SignUpForm()
@@ -27,13 +27,13 @@ def signup_view(request):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        form = EmailLoginForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect("my_account")
     else:
-        form = AuthenticationForm()
+        form = EmailLoginForm()
     return render(request, "registration/login.html", {"form": form})
 
 
