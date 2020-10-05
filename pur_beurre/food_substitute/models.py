@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,3 +29,8 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+
+class Favorites(models.Model):
+    users = models.ForeignKey(User, on_delete=models.CASCADE)
+    products = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='prod_id')
+    substitute = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='subs_id')

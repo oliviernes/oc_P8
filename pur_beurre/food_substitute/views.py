@@ -2,8 +2,9 @@ from collections import Counter
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.models import User
 
-from .models import Category, Products
+from .models import Category, Products, Favorites
 
 import pdb
 
@@ -85,3 +86,48 @@ of the product selected"""
         }
 
     return render(request, "food_substitute/category.html", context)
+
+def save(request, produc, substitut):
+    user_id = request.user.id
+    user = User.objects.get(id = user_id)
+    product = Products.objects.get(code = produc)
+    substitute = Products.objects.get(code = substitut)
+    duplicates = False
+    recorded = Favorites.objects.filter(users = user)
+    favorite_recorded=[]
+    for record in recorded:
+        rec = (Products.objects.get(id = record.products_id), Products.objects.get(id = record.substitute_id))
+        favorite_recorded.append(rec)
+    if len(Favorites.objects.filter(users = user, products=product, substitute=substitute)) > 0:
+        duplicates = True
+    else:    
+        record = Favorites(users = user, products=product, substitute=substitute)
+        record.save()
+    recording = True
+    context = {
+        "recording": recording,
+        "user": user,
+        "product": product,
+        "substitute": substitute,
+        "duplicates": duplicates,
+        "favorite_recorded": favorite_recorded,
+    }
+
+    return render(request, "food_substitute/favorites.html", context)
+
+def favorites(request):
+    user_id = request.user.id
+    user = User.objects.get(id = user_id)
+    recorded = Favorites.objects.filter(users = user)
+    favorite_recorded=[]
+    for record in recorded:
+        rec = (Products.objects.get(id = record.products_id), Products.objects.get(id = record.substitute_id))
+        favorite_recorded.append(rec)
+
+    recording = False
+    context = {
+                "recording": recording,
+                "favorite_recorded": favorite_recorded,
+            }
+
+    return render(request, "food_substitute/favorites.html", context)
