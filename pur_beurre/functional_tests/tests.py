@@ -54,7 +54,7 @@ class NewVisitorTest(LiveServerTestCase):
         # healthier products of the same category.
 
         inputbox_center.send_keys(Keys.ENTER)
-        time.sleep(5)
+        time.sleep(2)
 
         prod_text = self.browser.find_element_by_tag_name('h4').text
         self.assertIn('Nocciolata', prod_text)
@@ -87,11 +87,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Mell try to save a product. She click on the save link but as she
         # is not connected, the link send her on the login page:
 
-        # savelink = self.browser.find_element_by_xpath('//a[@href="/login/"]')
-
         save_texts = self.browser.find_elements_by_tag_name('h4')
-
-        # breakpoint()
 
         save_texts[1].click()
 
@@ -137,6 +133,26 @@ class NewVisitorTest(LiveServerTestCase):
         button[1].click()
 
         time.sleep(3)
+
+        # The app display Mell's account page. She is now connected. 
+        # She search again the product "Véritable petit beurre"
+        # in the search bar.
+
+        inputbox = self.browser.find_element_by_name('query')
+
+        inputbox.send_keys("Véritable petit beurre")
+
+        inputbox.send_keys(Keys.ENTER)
+ 
+        time.sleep(20)
+
+        # She tries again to save the first product.
+
+        save_texts = self.browser.find_elements_by_tag_name('h4')
+
+        save_texts[1].click()
+
+        time.sleep(2)
 
         self.fail('Finish the test!')
 
