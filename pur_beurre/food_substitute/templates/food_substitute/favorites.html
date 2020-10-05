@@ -1,0 +1,41 @@
+{% extends 'food_substitute/base.html' %}
+
+{% block infos %}
+
+    <table class="table table-bordered table-striped table-condensed">
+        <caption>
+        <h4>Vos substituts enregistrés dans vos précédentes recherches</h4>
+        </caption>
+        <thead>
+        <tr>
+        <th>Produit</th>
+        <th>Substitut plus sain</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        
+        {% for records in favorite_recorded %}
+        <tr>
+            {% for rec in records %}
+            <td> <a href="{% url 'detail' rec.code %}">{{ rec.name }}</a> </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% if recording is True %}
+        {% if duplicates is True %}
+        <p> {{ user.first_name }}, le substitut {{ substitute.name }} est déjà enregistré pour le produit {{ product.name }}. </p>
+        <br>
+        <p> Mais vous pouvez enregistrer plusieurs substituts pour un même produit. Choisissez un autre substitut.</p>
+        {% else %}
+        <p> {{ user.first_name }}, le substitut {{ substitute.name }} a été enregistré pour le produit {{ product.name }}. </p>
+        {% endif %}
+    {% else %}
+        <p>Voici vos substituts enregistrés</p>
+    {% endif %}
+
+{% endblock %}
