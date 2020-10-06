@@ -120,7 +120,7 @@ def test_login_valid_user():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
     response2 = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
 
@@ -145,7 +145,7 @@ def test_login_wrong_password():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'wrongpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
 
     response2 = c.post("/login/", {'username': 'john', 'password': 'wrongpassword'})
 
