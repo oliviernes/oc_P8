@@ -232,3 +232,22 @@ def test_save():
     assert response == True
     assert response2.status_code == 200
     assert response2.templates[0].name == "food_substitute/favorites.html"
+
+####################
+### favorites view #
+####################
+
+@mark.django_db
+def test_favorites():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.login(username= 'john', password= 'johnpassword')
+
+    response2 = c.get("/favorites/")
+
+    assert response == True
+    assert response2.status_code == 200
+    assert response2.templates[0].name == "food_substitute/favorites.html"
