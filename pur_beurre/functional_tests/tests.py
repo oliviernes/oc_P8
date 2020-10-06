@@ -84,10 +84,11 @@ class NewVisitorTest(LiveServerTestCase):
 
         # The page updates and show a new list of healthier products.
 
-        # Mell try to save a product. She click on the save link but as she
+        # Mell try to save the first product. She click on the save link but as she
         # is not connected, the link send her on the login page:
 
         save_texts = self.browser.find_elements_by_tag_name('h4')
+        self.assertIn('Sauvegarder', save_texts[1].text)
 
         save_texts[1].click()
 
@@ -96,10 +97,13 @@ class NewVisitorTest(LiveServerTestCase):
         # She tries to connect. She enters her email
         # and a wrong password. Then she clicks on the login button.
         
+        signup_link = self.browser.find_element_by_id("signup")
+        self.assertIn('un compte!', signup_link.text)
+
         username = self.browser.find_element_by_id("id_username")
         password = self.browser.find_element_by_id("id_password")
 
-        username.send_keys('Mell')
+        username.send_keys('mell2010@gmail.com')
         password.send_keys('XXXXX')
 
         password.send_keys(Keys.ENTER)
@@ -129,26 +133,34 @@ class NewVisitorTest(LiveServerTestCase):
         password1.send_keys('monsupermdp1234')
         password2.send_keys('monsupermdp1234')
 
+        signup_title = self.browser.find_element_by_id("signup_title")
+        self.assertEqual('Création de compte:', signup_title.text)
+
         button = self.browser.find_elements_by_tag_name('button')
         button[1].click()
 
-        time.sleep(3)
+        time.sleep(1)
 
         # The app display Mell's account page. She is now connected. 
         # She search again the product "Véritable petit beurre"
         # in the search bar.
 
-        inputbox = self.browser.find_element_by_name('query')
-
+        inputbox = self.browser.find_element_by_name('query') 
+        self.assertEqual(
+            inputbox.get_attribute('placeholder'),
+            'Chercher'
+        )
+        
         inputbox.send_keys("Véritable petit beurre")
 
         inputbox.send_keys(Keys.ENTER)
  
-        time.sleep(20)
+        time.sleep(1)
 
-        # She tries again to save the first product.
+        # She tries now to save the second product ('Biscuit raisin')
 
         save_texts = self.browser.find_elements_by_tag_name('h4')
+        self.assertEqual('Biscuit raisin', save_texts[2].text)
 
         save_texts[1].click()
 
