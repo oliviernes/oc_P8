@@ -212,3 +212,23 @@ def test_signup_wrong_infos():
     assert response.templates[1].name == "food_substitute/base.html"
 
 
+####################
+### save view   ####
+####################
+
+@mark.django_db
+def test_save():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+    prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+    c = Client()
+
+    response = c.login(username= 'john', password= 'johnpassword')
+
+    response2 = c.post("/save/7622210988034/7622210449283")
+
+    assert response == True
+    assert response2.status_code == 200
+    assert response2.templates[0].name == "food_substitute/favorites.html"
