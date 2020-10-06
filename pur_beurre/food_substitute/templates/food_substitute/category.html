@@ -4,7 +4,7 @@
 {% block bg %} style="background: black" {% endblock %}
 {% block image %}
     {% if product != None %}
-        <a href="{% url 'detail' product.code %}"><img src="{{ product.image }}" alt="image"/>
+        <a href="{% url 'detail' product.code %}"><img src="{{ product.image_small }}" alt="image"/>
         <h2 id="title_detail" class="row justify-content-center">
             <span>{{ product.name }}</span>
         </h2></a>
