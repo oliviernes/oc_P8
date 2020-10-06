@@ -176,3 +176,39 @@ def test_signup():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
+@mark.django_db
+def test_signup_right_infos():
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': 'Pierre71',
+                                     'first_name': 'Pierre',
+                                     'last_name': '',
+                                     'email': 'pierre716@gmail.com',
+                                     'password1': 'supermdp1234',
+                                     'password2': 'supermdp1234',
+                                     })
+
+    assert response.status_code == 302
+
+@mark.django_db
+def test_signup_wrong_infos():
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': '',
+                                     'first_name': '',
+                                     'last_name': '',
+                                     'email': 'pierrgmail.com',
+                                     'password1': 'aa',
+                                     'password2': 'bb',
+                                     })
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/signup.html"
+    assert response.templates[1].name == "food_substitute/base.html"
+
+
