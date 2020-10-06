@@ -24,7 +24,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.browser.get(self.live_server_url)
 
-        time.sleep(2)
+        time.sleep(1)
 
         # She notices the form bar in the header and in the center of the page
 
@@ -54,7 +54,7 @@ class NewVisitorTest(LiveServerTestCase):
         # healthier products of the same category.
 
         inputbox_center.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(1)
 
         prod_text = self.browser.find_element_by_tag_name('h4').text
         self.assertIn('Nocciolata', prod_text)
@@ -65,7 +65,7 @@ class NewVisitorTest(LiveServerTestCase):
         
         link.click()
 
-        time.sleep(2)
+        time.sleep(1)
 
         # She enters a new product in the textbox in the top of the screen.
 
@@ -80,7 +80,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         inputbox.send_keys(Keys.ENTER)
  
-        time.sleep(2)
+        time.sleep(1)
 
         # The page updates and show a new list of healthier products.
 
@@ -91,7 +91,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         save_texts[1].click()
 
-        time.sleep(3)
+        time.sleep(1)
 
         # She tries to connect. She enters her email
         # and a wrong password. Then she clicks on the login button.
@@ -104,7 +104,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         password.send_keys(Keys.ENTER)
         
-        time.sleep(3)
+        time.sleep(1)
 
         # The system inform her to try again:
         # Then, she click on the signup button because she doesn't have an account:
@@ -113,7 +113,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         signup.click()
 
-        time.sleep(3)
+        time.sleep(1)
 
         # The system display the signup form. She enters her account information:
 
