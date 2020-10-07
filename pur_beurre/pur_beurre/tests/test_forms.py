@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 from pytest import mark
 
-from accounts.forms import SignUpForm
+from accounts.forms import SignUpForm, EmailLoginForm
 
 ####################
 #### SignUpForm  ###
@@ -62,3 +62,12 @@ def test_signup_email_already_recorded():
                             'password2': 'monsupermdp1234'
                             })
     assert form.is_valid() == False
+
+########################
+#### EmailLoginForm  ###
+########################
+
+
+def test_email_login_form_labels():
+    form = EmailLoginForm()
+    assert form.fields['username'].label == 'Adresse Email'
