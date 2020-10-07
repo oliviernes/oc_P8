@@ -138,7 +138,6 @@ pur_beurre/food_substitute/static/food_substitute/img/ratatouille-portrait.jpg
 pur_beurre/food_substitute/forms.py
 pur_beurre/food_substitute/tests.py
 pur_beurre/pur_beurre/tests/api_response.json
-pur_beurre/food_substitute/fixtures/
 pur_beurre/food_substitute/static/food_substitute/css/styles.css.map
 
 # draft work in progress:

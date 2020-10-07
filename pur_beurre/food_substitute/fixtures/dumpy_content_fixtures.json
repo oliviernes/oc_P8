@@ -1,0 +1,689 @@
+[
+    {
+        "model": "food_substitute.category",
+        "pk": 461,
+        "fields": {
+            "name": "p\u00e2tes \u00e0 tartiner au chocolat"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 462,
+        "fields": {
+            "name": "Riz"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 463,
+        "fields": {
+            "name": "Desserts lact\u00e9s"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 464,
+        "fields": {
+            "name": "Yaourts aux fruits"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 465,
+        "fields": {
+            "name": "P\u00e2tisseries"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 466,
+        "fields": {
+            "name": "Viennoiseries"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 467,
+        "fields": {
+            "name": "P\u00e2tes \u00e0 tartiner v\u00e9g\u00e9tales"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 468,
+        "fields": {
+            "name": "Surgel\u00e9s"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 469,
+        "fields": {
+            "name": "Conserves"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 470,
+        "fields": {
+            "name": "Fromages"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 471,
+        "fields": {
+            "name": "Glaces et sorbets"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 472,
+        "fields": {
+            "name": "Plats pr\u00e9par\u00e9s au poisson"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 473,
+        "fields": {
+            "name": "Saucissons"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 474,
+        "fields": {
+            "name": "Chips"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 475,
+        "fields": {
+            "name": "Plats \u00e0 base de p\u00e2tes"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 476,
+        "fields": {
+            "name": "Biscuits au chocolat"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 477,
+        "fields": {
+            "name": "Plats pr\u00e9par\u00e9s \u00e0 r\u00e9chauffer au micro-ondes"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 478,
+        "fields": {
+            "name": "Plats \u00e0 la volaille"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 479,
+        "fields": {
+            "name": "Pizzas tartes sal\u00e9es et quiches"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 480,
+        "fields": {
+            "name": "C\u00e9r\u00e9ales en grains"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 481,
+        "fields": {
+            "name": "Foies gras"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 482,
+        "fields": {
+            "name": "Biscuits"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 483,
+        "fields": {
+            "name": "Tartes"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 484,
+        "fields": {
+            "name": "Aliments pour b\u00e9b\u00e9"
+        }
+    },
+    {
+        "model": "food_substitute.category",
+        "pk": 485,
+        "fields": {
+            "name": "Soupes de l\u00e9gumes"
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75176,
+        "fields": {
+            "code": "3017620422003",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/042/2003/front_fr.168.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/2003/front_fr.168.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/2003/nutrition_fr.146.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620422003/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75180,
+        "fields": {
+            "code": "8001505005592",
+            "name": "Nocciolata P\u00e2te \u00e0 tartiner au cacao et noisettes",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/800/150/500/5592/front_fr.79.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/800/150/500/5592/front_fr.79.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/800/150/500/5592/nutrition_fr.80.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/8001505005592/nocciolata-pate-a-tartiner-au-cacao-et-noisettes-rigoni-di-asiago",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75184,
+        "fields": {
+            "code": "8001505005707",
+            "name": "Nocciolata",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/800/150/500/5707/front_fr.96.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/800/150/500/5707/front_fr.96.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/800/150/500/5707/nutrition_fr.80.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/8001505005707/nocciolata-rigoni-di-asiago",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75246,
+        "fields": {
+            "code": "3596710422883",
+            "name": "P\u00e2te \u00e0 tartiner aux noisettes et au lait \u00e9cr\u00e9m\u00e9",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/359/671/042/2883/front_fr.19.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/359/671/042/2883/front_fr.19.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/359/671/042/2883/nutrition_fr.13.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3596710422883/pate-a-tartiner-aux-noisettes-et-au-lait-ecreme-auchan",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75247,
+        "fields": {
+            "code": "3572420000399",
+            "name": "C\u00e9r\u00e9ales Croc' Tout Choc \u00e0 la p\u00e2te \u00e0 tartiner",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/357/242/000/0399/front_fr.10.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/357/242/000/0399/front_fr.10.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/357/242/000/0399/nutrition_fr.32.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3572420000399/cereales-croc-tout-choc-a-la-pate-a-tartiner-lucien-georgelin",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75249,
+        "fields": {
+            "code": "8001505000689",
+            "name": "Nocciolata sans lait",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/800/150/500/0689/front_fr.23.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/800/150/500/0689/front_fr.23.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/800/150/500/0689/nutrition_fr.20.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/8001505000689/nocciolata-sans-lait-rigoni-di-asiago",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75257,
+        "fields": {
+            "code": "3350033468863",
+            "name": "Pate a tartiner bio",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/335/003/346/8863/front_fr.4.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/335/003/346/8863/front_fr.4.200.jpg",
+            "image_nutrition": "",
+            "url": "https://fr-en.openfoodfacts.org/product/3350033468863/pate-a-tartiner-bio-monoprix-bio",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75259,
+        "fields": {
+            "code": "3222475242434",
+            "name": "Je suis noisette la premi\u00e8re p\u00e2te \u00e0 tartiner sans huile de palme",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/322/247/524/2434/front_fr.8.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/322/247/524/2434/front_fr.8.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/322/247/524/2434/nutrition_fr.10.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3222475242434/je-suis-noisette-la-premiere-pate-a-tartiner-sans-huile-de-palme-casino",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75261,
+        "fields": {
+            "code": "5400113545774",
+            "name": "P\u00e2te \u00e0 tartiner aux noisettes  sans huile de palme",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/540/011/354/5774/front_fr.10.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/540/011/354/5774/front_fr.10.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/540/011/354/5774/nutrition_fr.8.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/5400113545774/pate-a-tartiner-aux-noisettes-sans-huile-de-palme-delhaize",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75262,
+        "fields": {
+            "code": "3390390001259",
+            "name": "Chocolade sans lait 40% noisette",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/339/039/000/1259/front_fr.33.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/339/039/000/1259/front_fr.33.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/339/039/000/1259/nutrition_fr.40.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3390390001259/chocolade-sans-lait-40-noisette-jean-herve",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75263,
+        "fields": {
+            "code": "8001505000399",
+            "name": "Rigoni Di Asiago, NOCCIOLATA",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/800/150/500/0399/front_fr.18.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/800/150/500/0399/front_fr.18.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/800/150/500/0399/nutrition_fr.13.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/8001505000399/rigoni-di-asiago-nocciolata",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75177,
+        "fields": {
+            "code": "3017620420047",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/0047/nutrition_fr.124.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620420047/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75178,
+        "fields": {
+            "code": "3017620425035",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/5035/front_en.73.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/5035/nutrition_en.114.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620425035/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75179,
+        "fields": {
+            "code": "3017620421006",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/042/1006/front_fr.176.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/1006/front_fr.176.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/1006/nutrition_fr.137.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620421006/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75181,
+        "fields": {
+            "code": "3017620406003",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.130.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/040/6003/front_fr.130.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/040/6003/nutrition_fr.65.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620406003/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75182,
+        "fields": {
+            "code": "3478820023184",
+            "name": "P\u00e2te \u00e0 Tartiner Chocolat Noisette",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/347/882/002/3184/front_fr.135.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/347/882/002/3184/front_fr.135.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/347/882/002/3184/nutrition_fr.98.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3478820023184/pate-a-tartiner-chocolat-noisette-jardin-bio",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75183,
+        "fields": {
+            "code": "3017620402678",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/040/2678/front_fr.77.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/040/2678/front_fr.77.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/040/2678/nutrition_fr.44.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620402678/nutella-ferrero",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75185,
+        "fields": {
+            "code": "3017620429484",
+            "name": "Nutella",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/301/762/042/9484/front_fr.219.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/9484/front_fr.219.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/9484/nutrition_fr.106.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3017620429484/nutella",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 75186,
+        "fields": {
+            "code": "3330720237361",
+            "name": "P\u00e2te \u00e0 tartiner noisette du Lot et Garonne cacao",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/333/072/023/7361/front_fr.88.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/333/072/023/7361/front_fr.88.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/333/072/023/7361/nutrition_fr.47.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3330720237361/pate-a-tartiner-noisette-du-lot-et-garonne-cacao-lucien-georgelin",
+            "category": [
+                461
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78051,
+        "fields": {
+            "code": "7622210988034",
+            "name": "V\u00e9ritable petit beurre",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/762/221/098/8034/front_fr.41.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/762/221/098/8034/front_fr.41.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/762/221/098/8034/nutrition_fr.48.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/7622210988034/veritable-petit-beurre-lu",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78052,
+        "fields": {
+            "code": "7622210476241",
+            "name": "Petit brun extra",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/762/221/047/6241/front_fr.45.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/762/221/047/6241/front_fr.45.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/762/221/047/6241/nutrition_fr.47.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/7622210476241/petit-brun-extra",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78053,
+        "fields": {
+            "code": "3175681851856",
+            "name": "Biscuit raisin",
+            "nutrition_grades": "c",
+            "image": "https://static.openfoodfacts.org/images/products/317/568/185/1856/front_fr.19.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/317/568/185/1856/front_fr.19.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/317/568/185/1856/nutrition_fr.77.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3175681851856/biscuit-raisin-gerble",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78054,
+        "fields": {
+            "code": "3023470010017",
+            "name": "Sabl\u00e9 de Retz le V\u00e9ritable",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/302/347/001/0017/front_fr.87.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/302/347/001/0017/front_fr.87.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/302/347/001/0017/nutrition_fr.81.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3023470010017/crunchy-coconut-biscuits-st-michel",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78055,
+        "fields": {
+            "code": "3061990141668",
+            "name": "Casse cro\u00fbte",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/306/199/014/1668/front_fr.77.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/306/199/014/1668/front_fr.77.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/306/199/014/1668/nutrition_fr.79.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3061990141668/casse-croute-bn",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78056,
+        "fields": {
+            "code": "7622210770714",
+            "name": "Belvita petit dejeuner moelleux",
+            "nutrition_grades": "c",
+            "image": "https://static.openfoodfacts.org/images/products/762/221/077/0714/front_fr.52.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/762/221/077/0714/front_fr.52.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/762/221/077/0714/nutrition_fr.10.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/7622210770714/belvita-petit-dejeuner-moelleux",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78057,
+        "fields": {
+            "code": "3229820794532",
+            "name": "Biscuits Bio Nutri+ avoine complet",
+            "nutrition_grades": "c",
+            "image": "https://static.openfoodfacts.org/images/products/322/982/079/4532/front_fr.14.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/322/982/079/4532/front_fr.14.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/322/982/079/4532/nutrition_fr.7.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3229820794532/biscuits-bio-nutri-avoine-complet-bjorg",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78058,
+        "fields": {
+            "code": "3175681105423",
+            "name": "Cookie cacao p\u00e9pites",
+            "nutrition_grades": "b",
+            "image": "https://static.openfoodfacts.org/images/products/317/568/110/5423/front_fr.3.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/317/568/110/5423/front_fr.3.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/317/568/110/5423/nutrition_fr.16.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3175681105423/cookie-cacao-pepites-gerble",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78059,
+        "fields": {
+            "code": "3229820791067",
+            "name": "Fourr\u00e9s fruit myrtilles",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/322/982/079/1067/front_fr.44.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/322/982/079/1067/front_fr.44.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/322/982/079/1067/nutrition_fr.63.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3229820791067/fourres-fruit-myrtilles-bjorg",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78060,
+        "fields": {
+            "code": "7622210422163",
+            "name": "La paille d\u2019or aux framboises",
+            "nutrition_grades": "d",
+            "image": "https://static.openfoodfacts.org/images/products/762/221/042/2163/front_fr.59.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/762/221/042/2163/front_fr.59.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/762/221/042/2163/nutrition_fr.83.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/7622210422163/la-paille-d-or-aux-framboises-lu",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78061,
+        "fields": {
+            "code": "3175681116832",
+            "name": "Biscuit Coco",
+            "nutrition_grades": "b",
+            "image": "https://static.openfoodfacts.org/images/products/317/568/111/6832/front_fr.36.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/317/568/111/6832/front_fr.36.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/317/568/111/6832/nutrition_fr.49.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/3175681116832/biscuit-coco-gerble",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78062,
+        "fields": {
+            "code": "5410041040807",
+            "name": "Pim's framboise",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/541/004/104/0807/front_fr.106.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/541/004/104/0807/front_fr.106.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/541/004/104/0807/nutrition_fr.104.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/5410041040807/pim-s-framboise-lu",
+            "category": [
+                482
+            ]
+        }
+    },
+    {
+        "model": "food_substitute.products",
+        "pk": 78063,
+        "fields": {
+            "code": "5000168198491",
+            "name": "Sabl\u00e9 Anglais The Original",
+            "nutrition_grades": "e",
+            "image": "https://static.openfoodfacts.org/images/products/500/016/819/8491/front_fr.91.400.jpg",
+            "image_small": "https://static.openfoodfacts.org/images/products/500/016/819/8491/front_fr.91.200.jpg",
+            "image_nutrition": "https://static.openfoodfacts.org/images/products/500/016/819/8491/nutrition_fr.108.400.jpg",
+            "url": "https://fr-en.openfoodfacts.org/product/5000168198491/sable-anglais-the-original-mcvitie-s",
+            "category": [
+                482
+            ]
+        }
+    }
+]
