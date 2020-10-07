@@ -217,7 +217,7 @@ def test_signup_wrong_infos():
 ####################
 
 @mark.django_db
-def test_save():
+def test_save_user_connected():
 
     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
     prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
@@ -232,6 +232,19 @@ def test_save():
     assert response == True
     assert response2.status_code == 200
     assert response2.templates[0].name == "food_substitute/favorites.html"
+
+@mark.django_db
+def test_save_user_not_connected():
+
+    prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+    prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+    c = Client()
+
+    response = c.post("/save/7622210988034/7622210449283")
+
+    assert response.status_code == 302
+    assert response.url == "/login/"
 
 ####################
 ### favorites view #
