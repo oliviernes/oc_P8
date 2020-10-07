@@ -120,9 +120,9 @@ def test_login_valid_user():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    response2 = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
+    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
 
     assert response == True
     assert response2.url == "/my_account/"
@@ -146,9 +146,9 @@ def test_login_wrong_password():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'wrongpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
 
-    response2 = c.post("/login/", {'username': 'john', 'password': 'wrongpassword'})
+    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
 
     assert response == False
     assert response2.status_code == 200
@@ -160,7 +160,7 @@ def test_login_no_user_recorded():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
     assert response == False
 
@@ -179,7 +179,7 @@ def test_signup():
     assert response.templates[1].name == "food_substitute/base.html"
 
 @mark.django_db
-def test_signup_user():
+def test_signup_right_infos():
 
     c = Client()
 
@@ -201,13 +201,13 @@ def test_signup_user_incorrect_data():
     c = Client()
 
     response = c.post("/signup/", {
-                                    'username': '', 
-                                    'first_name': 'Mell', 
-                                    'last_name': '', 
-                                    'email': 'mell6gmail.com', 
-                                    'password1': 'dd', 
-                                    'password2': 'aa', 
-                                })
+                                    'username': '',
+                                     'first_name': '',
+                                     'last_name': '',
+                                     'email': 'pimail.com',
+                                     'password1': 'aa',
+                                     'password2': 'bb',
+                                     })
 
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
@@ -232,3 +232,43 @@ def test_signup_user_email_already_used():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
+####################
+### save view   ####
+####################
+
+@mark.django_db
+def test_save():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+    prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+    c = Client()
+
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+
+    response2 = c.post("/save/7622210988034/7622210449283")
+
+    assert response == True
+    assert response2.status_code == 200
+    assert response2.templates[0].name == "food_substitute/favorites.html"
+
+####################
+### favorites view #
+####################
+
+@mark.django_db
+def test_favorites():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+
+    response2 = c.get("/favorites/")
+
+    assert response == True
+    assert response2.status_code == 200
+    assert response2.templates[0].name == "food_substitute/favorites.html"
