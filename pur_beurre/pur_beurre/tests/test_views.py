@@ -125,6 +125,7 @@ def test_login_valid_user():
     response2 = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
 
     assert response == True
+    assert response2.url == "/my_account/"
     assert response2.status_code == 302
 
 @mark.django_db
@@ -172,6 +173,61 @@ def test_signup():
 
     c = Client()
     response = c.get("/signup/")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/signup.html"
+    assert response.templates[1].name == "food_substitute/base.html"
+
+@mark.django_db
+def test_signup_user():
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': 'Mell1', 
+                                    'first_name': 'Mell', 
+                                    'last_name': 'MAMAMA', 
+                                    'email': 'mell6@gmail.com', 
+                                    'password1': 'monsupermdp1234', 
+                                    'password2': 'monsupermdp1234', 
+                                })
+
+    assert response.url == "/my_account/"
+    assert response.status_code == 302
+
+@mark.django_db
+def test_signup_user_incorrect_data():
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': '', 
+                                    'first_name': 'Mell', 
+                                    'last_name': '', 
+                                    'email': 'mell6gmail.com', 
+                                    'password1': 'dd', 
+                                    'password2': 'aa', 
+                                })
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/signup.html"
+    assert response.templates[1].name == "food_substitute/base.html"
+
+@mark.django_db
+def test_signup_user_email_already_used():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': 'Mell1', 
+                                    'first_name': 'Mell', 
+                                    'last_name': 'MAMAMA', 
+                                    'email': 'lennon@thebeatles.com', 
+                                    'password1': 'monsupermdp1234', 
+                                    'password2': 'monsupermdp1234', 
+                                })
 
     assert response.status_code == 200
     assert response.templates[0].name == "registration/signup.html"
