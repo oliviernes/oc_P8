@@ -122,7 +122,7 @@ def test_login_valid_user():
 
     response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    response2 = c.post("/login/", {'username': 'john', 'password': 'johnpassword'})
+    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
 
     assert response == True
     assert response2.status_code == 302
@@ -147,7 +147,7 @@ def test_login_wrong_password():
 
     response = c.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
 
-    response2 = c.post("/login/", {'username': 'john', 'password': 'wrongpassword'})
+    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
 
     assert response == False
     assert response2.status_code == 200
@@ -159,7 +159,7 @@ def test_login_no_user_recorded():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
     assert response == False
 
@@ -225,7 +225,7 @@ def test_save():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
     response2 = c.post("/save/7622210988034/7622210449283")
 
@@ -244,7 +244,7 @@ def test_favorites():
 
     c = Client()
 
-    response = c.login(username= 'john', password= 'johnpassword')
+    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
     response2 = c.get("/favorites/")
 
