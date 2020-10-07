@@ -16,6 +16,7 @@ def test_category_name_label():
     categor = Category.objects.get(id=1)
     field_label = categor._meta.get_field('name').verbose_name
     assert field_label == 'name'
+    assert str(categor) == "biscuits"
 
 ####################
 ### Product model  #
@@ -57,3 +58,4 @@ def test_products_labels():
     assert image_nutrition_label == 'image nutrition'
     assert url_label == 'url'
     assert url_max_length == 255
+    assert str(prod) == "petit Beurre"
