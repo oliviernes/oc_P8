@@ -11,60 +11,60 @@ from food_substitute.models import Products
 
 import pdb
 
-@mark.django_db
-def test_search_missing_prod():
+class TestSearch:
 
-    c = Client()
-    response = c.get("/search/?query=Nutella")
+    client = Client()
 
-    assert (
-        response.context["title_prod_missing"]
-        == "Il n'y a pas de produits 'Nutella' dans la base de données"
-    )
-    assert response.status_code == 200
-    assert response.templates[0].name == "food_substitute/category.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+    @mark.django_db
+    def test_search_missing_prod(self):
 
+        response = self.client.get("/search/?query=Nutella")
 
-
-def test_search_no_query():
-
-    c = Client()
-    response = c.get("/search/?query=")
-
-    assert response.context["message"] == "Veuillez entrez un produit"
-    assert response.status_code == 200
-    assert response.templates[0].name == "food_substitute/category.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+        assert (
+            response.context["title_prod_missing"]
+            == "Il n'y a pas de produits 'Nutella' dans la base de données"
+        )
+        assert response.status_code == 200
+        assert response.templates[0].name == "food_substitute/category.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
 
-@mark.django_db
-def test_search_product():
 
-    prod = Products.objects.create(name="Nutella", code="1")
-    c = Client()
-    response = c.get("/search/?query=Nutella")
-    prod = response.context["product"]
+    def test_search_no_query(self):
 
-    assert prod.name == "Nutella"
-    assert response.status_code == 200
-    assert response.templates[0].name == "food_substitute/category.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+        response = self.client.get("/search/?query=")
+
+        assert response.context["message"] == "Veuillez entrez un produit"
+        assert response.status_code == 200
+        assert response.templates[0].name == "food_substitute/category.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
 
-@mark.django_db
-def test_search_partial_query():
+    @mark.django_db
+    def test_search_product(self):
 
-    prod = Products.objects.create(name="Nutella", code="1")
+        prod = Products.objects.create(name="Nutella", code="1")
+        response = self.client.get("/search/?query=Nutella")
+        prod = response.context["product"]
 
-    c = Client()
-    response = c.get("/search/?query=Nutel")
-    prod = response.context["product"]
+        assert prod.name == "Nutella"
+        assert response.status_code == 200
+        assert response.templates[0].name == "food_substitute/category.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
-    assert prod.name == "Nutella"
-    assert response.status_code == 200
-    assert response.templates[0].name == "food_substitute/category.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+
+    @mark.django_db
+    def test_search_partial_query(self):
+
+        prod = Products.objects.create(name="Nutella", code="1")
+
+        response = self.client.get("/search/?query=Nutel")
+        prod = response.context["product"]
+
+        assert prod.name == "Nutella"
+        assert response.status_code == 200
+        assert response.templates[0].name == "food_substitute/category.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
 
 ###################
@@ -77,8 +77,8 @@ def test_detail_product():
 
     prod = Products.objects.create(name="Nutella", code="123456789")
 
-    c = Client()
-    response = c.get("/product/123456789")
+    client = Client()
+    response = client.get("/product/123456789")
     prod = response.context["product"]
 
     assert prod.name == "Nutella"
@@ -93,8 +93,8 @@ def test_detail_product():
 
 def test_welcome():
 
-    c = Client()
-    response = c.get("/")
+    client = Client()
+    response = client.get("/")
 
     assert response.status_code == 200
     assert response.templates[0].name == "food_substitute/welcome.html"
@@ -104,168 +104,159 @@ def test_welcome():
 ### login view #####
 ####################
 
+class TestLogin:
 
-def test_login():
+    client = Client()
 
-    c = Client()
-    response = c.get("/login/")
+    def test_login(self):
 
-    assert response.status_code == 200
-    assert response.templates[0].name == "registration/login.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+        response = self.client.get("/login/")
 
-@mark.django_db
-def test_login_valid_user():
-    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        assert response.status_code == 200
+        assert response.templates[0].name == "registration/login.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
-    c = Client()
+    @mark.django_db
+    def test_login_valid_user(self):
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
+        response2 = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
 
-    assert response == True
-    assert response2.url == "/my_account/"
-    assert response2.status_code == 302
+        assert response == True
+        assert response2.url == "/my_account/"
+        assert response2.status_code == 302
 
-@mark.django_db
-def test_login_wrong_user():
+    @mark.django_db
+    def test_login_wrong_user(self):
 
-    c = Client()
+        response = self.client.post("/login/", {'username': 'tartampion', 'password': 'johnpassword'})
 
-    response = c.post("/login/", {'username': 'tartampion', 'password': 'johnpassword'})
+        assert response.status_code == 200
+        assert response.templates[0].name == "registration/login.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
-    assert response.status_code == 200
-    assert response.templates[0].name == "registration/login.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+    @mark.django_db
+    def test_login_wrong_password(self):
 
-@mark.django_db
-def test_login_wrong_password():
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        response = self.client.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
 
-    c = Client()
+        response2 = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
 
-    response = c.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
+        assert response == False
+        assert response2.status_code == 200
+        assert response2.templates[0].name == "registration/login.html"
+        assert response2.templates[1].name == "food_substitute/base.html"
 
-    response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
+    @mark.django_db
+    def test_login_no_user_recorded(self):
 
-    assert response == False
-    assert response2.status_code == 200
-    assert response2.templates[0].name == "registration/login.html"
-    assert response2.templates[1].name == "food_substitute/base.html"
+        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-@mark.django_db
-def test_login_no_user_recorded():
-
-    c = Client()
-
-    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
-
-    assert response == False
+        assert response == False
 
 ####################
 ### signup view ####
 ####################
 
+class TestSignup:
 
-def test_signup():
+    client = Client()
+    
+    def test_signup(self):
 
-    c = Client()
-    response = c.get("/signup/")
 
-    assert response.status_code == 200
-    assert response.templates[0].name == "registration/signup.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+        response = self.client.get("/signup/")
 
-@mark.django_db
-def test_signup_right_infos():
+        assert response.status_code == 200
+        assert response.templates[0].name == "registration/signup.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
-    c = Client()
+    @mark.django_db
+    def test_signup_right_infos(self):
 
-    response = c.post("/signup/", {
-                                    'username': 'Mell1', 
-                                    'first_name': 'Mell', 
-                                    'last_name': 'MAMAMA', 
-                                    'email': 'mell6@gmail.com', 
-                                    'password1': 'monsupermdp1234', 
-                                    'password2': 'monsupermdp1234', 
-                                })
+        response = self.client.post("/signup/", {
+                                        'username': 'Mell1', 
+                                        'first_name': 'Mell', 
+                                        'last_name': 'MAMAMA', 
+                                        'email': 'mell6@gmail.com', 
+                                        'password1': 'monsupermdp1234', 
+                                        'password2': 'monsupermdp1234', 
+                                    })
 
-    assert response.url == "/my_account/"
-    assert response.status_code == 302
+        assert response.url == "/my_account/"
+        assert response.status_code == 302
 
-@mark.django_db
-def test_signup_user_incorrect_data():
+    @mark.django_db
+    def test_signup_user_incorrect_data(self):
 
-    c = Client()
+        response = self.client.post("/signup/", {
+                                        'username': '',
+                                        'first_name': '',
+                                        'last_name': '',
+                                        'email': 'pimail.com',
+                                        'password1': 'aa',
+                                        'password2': 'bb',
+                                        })
 
-    response = c.post("/signup/", {
-                                    'username': '',
-                                     'first_name': '',
-                                     'last_name': '',
-                                     'email': 'pimail.com',
-                                     'password1': 'aa',
-                                     'password2': 'bb',
-                                     })
+        assert response.status_code == 200
+        assert response.templates[0].name == "registration/signup.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
-    assert response.status_code == 200
-    assert response.templates[0].name == "registration/signup.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+    @mark.django_db
+    def test_signup_user_email_already_used(self):
 
-@mark.django_db
-def test_signup_user_email_already_used():
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        response = self.client.post("/signup/", {
+                                        'username': 'Mell1', 
+                                        'first_name': 'Mell', 
+                                        'last_name': 'MAMAMA', 
+                                        'email': 'lennon@thebeatles.com', 
+                                        'password1': 'monsupermdp1234', 
+                                        'password2': 'monsupermdp1234', 
+                                    })
 
-    c = Client()
-
-    response = c.post("/signup/", {
-                                    'username': 'Mell1', 
-                                    'first_name': 'Mell', 
-                                    'last_name': 'MAMAMA', 
-                                    'email': 'lennon@thebeatles.com', 
-                                    'password1': 'monsupermdp1234', 
-                                    'password2': 'monsupermdp1234', 
-                                })
-
-    assert response.status_code == 200
-    assert response.templates[0].name == "registration/signup.html"
-    assert response.templates[1].name == "food_substitute/base.html"
+        assert response.status_code == 200
+        assert response.templates[0].name == "registration/signup.html"
+        assert response.templates[1].name == "food_substitute/base.html"
 
 ####################
 ### save view   ####
 ####################
 
-@mark.django_db
-def test_save_user_connected():
+class TestSave:
 
-    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-    prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
-    prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+    client = Client()
 
-    c = Client()
+    @mark.django_db
+    def test_save_user_connected(self):
 
-    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
-    response2 = c.post("/save/7622210988034/7622210449283")
+        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    assert response == True
-    assert response2.status_code == 200
-    assert response2.templates[0].name == "food_substitute/favorites.html"
+        response2 = self.client.post("/save/7622210988034/7622210449283")
 
-@mark.django_db
-def test_save_user_not_connected():
+        assert response == True
+        assert response2.status_code == 200
+        assert response2.templates[0].name == "food_substitute/favorites.html"
 
-    prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
-    prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+    @mark.django_db
+    def test_save_user_not_connected(self):
 
-    c = Client()
+        prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
-    response = c.post("/save/7622210988034/7622210449283")
+        response = self.client.post("/save/7622210988034/7622210449283")
 
-    assert response.status_code == 302
-    assert response.url == "/login/"
+        assert response.status_code == 302
+        assert response.url == "/login/"
 
 ####################
 ### favorites view #
@@ -274,13 +265,13 @@ def test_save_user_not_connected():
 @mark.django_db
 def test_favorites():
 
+    client = Client()
+
     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-    c = Client()
+    response = client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    response = c.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
-
-    response2 = c.get("/favorites/")
+    response2 = client.get("/favorites/")
 
     assert response == True
     assert response2.status_code == 200
