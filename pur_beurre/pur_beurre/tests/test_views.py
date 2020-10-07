@@ -125,6 +125,7 @@ def test_login_valid_user():
     response2 = c.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
 
     assert response == True
+    assert response2.url == "/my_account/"
     assert response2.status_code == 302
 
 @mark.django_db
@@ -183,18 +184,19 @@ def test_signup_right_infos():
     c = Client()
 
     response = c.post("/signup/", {
-                                    'username': 'Pierre71',
-                                     'first_name': 'Pierre',
-                                     'last_name': '',
-                                     'email': 'pierre716@gmail.com',
-                                     'password1': 'supermdp1234',
-                                     'password2': 'supermdp1234',
-                                     })
+                                    'username': 'Mell1', 
+                                    'first_name': 'Mell', 
+                                    'last_name': 'MAMAMA', 
+                                    'email': 'mell6@gmail.com', 
+                                    'password1': 'monsupermdp1234', 
+                                    'password2': 'monsupermdp1234', 
+                                })
 
+    assert response.url == "/my_account/"
     assert response.status_code == 302
 
 @mark.django_db
-def test_signup_wrong_infos():
+def test_signup_user_incorrect_data():
 
     c = Client()
 
@@ -202,7 +204,7 @@ def test_signup_wrong_infos():
                                     'username': '',
                                      'first_name': '',
                                      'last_name': '',
-                                     'email': 'pierrgmail.com',
+                                     'email': 'pimail.com',
                                      'password1': 'aa',
                                      'password2': 'bb',
                                      })
@@ -211,6 +213,25 @@ def test_signup_wrong_infos():
     assert response.templates[0].name == "registration/signup.html"
     assert response.templates[1].name == "food_substitute/base.html"
 
+@mark.django_db
+def test_signup_user_email_already_used():
+
+    user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+
+    c = Client()
+
+    response = c.post("/signup/", {
+                                    'username': 'Mell1', 
+                                    'first_name': 'Mell', 
+                                    'last_name': 'MAMAMA', 
+                                    'email': 'lennon@thebeatles.com', 
+                                    'password1': 'monsupermdp1234', 
+                                    'password2': 'monsupermdp1234', 
+                                })
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/signup.html"
+    assert response.templates[1].name == "food_substitute/base.html"
 
 ####################
 ### save view   ####

@@ -8,8 +8,7 @@ import unittest
 import time
 
 class NewVisitorTest(LiveServerTestCase):
-    fixtures = ['dumpy_content_reduced_exclude']
-    # fixtures = ['dumpy_content_exclude']
+    fixtures = ['dumpy_content_fixtures']
 
     def setUp(self):
         self.browser = webdriver.Firefox()

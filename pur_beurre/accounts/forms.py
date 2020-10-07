@@ -8,6 +8,11 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(label='Nom', max_length=30, required=False, help_text='Optionel.')
     email = forms.EmailField(label='Courriel', max_length=254, help_text='Requis. Entrez une adresse email valide.')
 
+    def clean_email(self):
+        if User.objects.filter(email=self.cleaned_data['email']).exists():
+            raise forms.ValidationError("L'adresse email est déjà enregistrée. Veuillez renseigner une autre adresse email.")
+        return self.cleaned_data['email']
+
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )

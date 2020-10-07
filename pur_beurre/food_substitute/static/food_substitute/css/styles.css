@@ -68,7 +68,7 @@ html {
 #title_detail {
   position: absolute;
   /* To place the text on the image*/
-  top: 100px;
+  top: 60px;
   /* The exact location of the text from the top of the image*/
   left: 0;
   /* Other beautification stuff */
