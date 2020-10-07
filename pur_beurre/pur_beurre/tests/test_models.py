@@ -36,16 +36,24 @@ def test_products_labels():
 
     prod = Products.objects.get(id=1)
     code_label = prod._meta.get_field('code').verbose_name
+    code_max_length = prod._meta.get_field('code').max_length
     name_label = prod._meta.get_field('name').verbose_name
+    name_max_length = prod._meta.get_field('name').max_length
     nutrition_grades_label = prod._meta.get_field('nutrition_grades').verbose_name
+    nutrition_grades_max_length = prod._meta.get_field('nutrition_grades').max_length
     image_label = prod._meta.get_field('image').verbose_name
     image_small_label = prod._meta.get_field('image_small').verbose_name
     image_nutrition_label = prod._meta.get_field('image_nutrition').verbose_name
     url_label = prod._meta.get_field('url').verbose_name
+    url_max_length = prod._meta.get_field('url').max_length
     assert code_label == 'code'
+    assert code_max_length == 13
     assert name_label == 'name'
+    assert name_max_length == 255
     assert nutrition_grades_label == 'nutrition grades'
+    assert nutrition_grades_max_length == 255
     assert image_label == 'image'
     assert image_small_label == 'image small'
     assert image_nutrition_label == 'image nutrition'
     assert url_label == 'url'
+    assert url_max_length == 255
