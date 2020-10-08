@@ -27,8 +27,7 @@ class TestSearch:
         assert response.status_code == 200
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
-
-
+        assert response.context['query'] == "Nutella"
 
     def test_search_no_query(self):
 
