@@ -6,7 +6,7 @@ from unittest.mock import patch
 from pytest import fixture, mark
 
 from food_substitute.management.commands.populate_db import Command
-from food_substitute.models import Products
+from food_substitute.models import Products, Category
 
 
 @fixture
@@ -92,6 +92,21 @@ def test_printing_category_inserted(db_feed, nutella, capsys):
 insterted in the DB\n"
     )
 
+@mark.django_db
+def test_printing_category_already_been_inserted(db_feed, nutella, capsys):
+    """ test the printing of inserted categories """
+    Fake_API_response = [nutella[1]["fields"]]
+    Products.objects.create(code="3017620420047")
+    Category.objects.create(name="pâtes à tartiner au chocolat")
+
+    db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
+
+    out, err = capsys.readouterr()
+    assert (
+        out
+        == "The category pâtes à tartiner au chocolat has already been \
+insterted in the DB\n"
+    )
 
 @mark.django_db
 def test_product_with_long_fields(db_feed, nutella):
