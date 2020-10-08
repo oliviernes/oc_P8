@@ -329,6 +329,14 @@ def test_favorites():
     client = Client()
 
     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    subs = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+    prod = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+    fav = Favorites.objects.create(
+                                    users = user,
+                                    products = prod,
+                                    substitute = subs,
+                                    )
 
     response_login = client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
@@ -337,3 +345,6 @@ def test_favorites():
     assert response_login == True
     assert response_post.status_code == 200
     assert response_post.templates[0].name == "food_substitute/favorites.html"
+    assert response_post.context['recording'] == False
+    assert response_post.context["favorite_recorded"][0][0].name == "Véritable petit beurre"
+    assert response_post.context["favorite_recorded"][0][1].name == "Prince goût chocolat"
