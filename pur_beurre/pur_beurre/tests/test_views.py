@@ -42,17 +42,17 @@ class TestSearch:
     def test_search_no_better_product(self):
 
         cat = Category.objects.create(name="pâtes à tartiner au chocolat")
-        prod1 = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
-        prod2 = Products.objects.create(name="Pâte à tartiner lambda", code="2", nutrition_grades="e")
-        prod1.category.add(Category.objects.get(name=cat.name))
-        prod1.save()
-        prod2.category.add(Category.objects.get(name=cat.name))
-        prod2.save()
+        prod = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
+        other_prod = Products.objects.create(name="Pâte à tartiner lambda", code="2", nutrition_grades="e")
+        prod.category.add(Category.objects.get(name=cat.name))
+        prod.save()
+        other_prod.category.add(Category.objects.get(name=cat.name))
+        other_prod.save()
 
         response = self.client.get("/search/?query=Nutella")
-        prod = response.context["product"]
+        product = response.context["product"]
 
-        assert prod.name == "Nutella"
+        assert product.name == "Nutella"
         assert response.status_code == 200
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
@@ -63,17 +63,17 @@ class TestSearch:
     def test_search_better_product(self):
 
         cat = Category.objects.create(name="pâtes à tartiner au chocolat")
-        prod1 = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
-        prod2 = Products.objects.create(name="Pâte à tartiner", code="2", nutrition_grades="d")
-        prod1.category.add(Category.objects.get(name=cat.name))
-        prod1.save()
-        prod2.category.add(Category.objects.get(name=cat.name))
-        prod2.save()
+        prod = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
+        better_prod = Products.objects.create(name="Pâte à tartiner", code="2", nutrition_grades="d")
+        prod.category.add(Category.objects.get(name=cat.name))
+        prod.save()
+        better_prod.category.add(Category.objects.get(name=cat.name))
+        better_prod.save()
 
         response = self.client.get("/search/?query=Nutella")
-        prod = response.context["product"]
+        product = response.context["product"]
 
-        assert prod.name == "Nutella"
+        assert product.name == "Nutella"
         assert response.status_code == 200
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
@@ -87,9 +87,9 @@ class TestSearch:
         prod = Products.objects.create(name="Nutella", code="1")
 
         response = self.client.get("/search/?query=Nutel")
-        prod = response.context["product"]
+        product = response.context["product"]
 
-        assert prod.name == "Nutella"
+        assert product.name == "Nutella"
         assert response.status_code == 200
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
@@ -107,9 +107,9 @@ def test_detail_product():
 
     client = Client()
     response = client.get("/product/123456789")
-    prod = response.context["product"]
+    product = response.context["product"]
 
-    assert prod.name == "Nutella"
+    assert product.name == "Nutella"
     assert response.status_code == 200
     assert response.templates[0].name == "food_substitute/detail.html"
     assert response.templates[1].name == "food_substitute/base.html"
@@ -148,13 +148,13 @@ class TestLogin:
     def test_login_valid_user(self):
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+        response_login = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-        response2 = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
+        response_post = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'johnpassword'})
 
-        assert response == True
-        assert response2.url == "/my_account/"
-        assert response2.status_code == 302
+        assert response_login == True
+        assert response_post.url == "/my_account/"
+        assert response_post.status_code == 302
 
     @mark.django_db
     def test_login_wrong_user(self):
@@ -170,14 +170,14 @@ class TestLogin:
 
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-        response = self.client.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
+        response_login = self.client.login(username= 'lennon@thebeatles.com', password= 'wrongpassword')
 
-        response2 = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
+        response_post = self.client.post("/login/", {'username': 'lennon@thebeatles.com', 'password': 'wrongpassword'})
 
-        assert response == False
-        assert response2.status_code == 200
-        assert response2.templates[0].name == "registration/login.html"
-        assert response2.templates[1].name == "food_substitute/base.html"
+        assert response_login == False
+        assert response_post.status_code == 200
+        assert response_post.templates[0].name == "registration/login.html"
+        assert response_post.templates[1].name == "food_substitute/base.html"
 
     @mark.django_db
     def test_login_no_user_recorded(self):
@@ -264,45 +264,45 @@ class TestSave:
     def test_save_user_connected_and_favorite_already_recorded(self):
 
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-        prod1 = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
-        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+        subs = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
         fav = Favorites.objects.create(
                                         users = user,
-                                        products = prod2,
-                                        substitute = prod1,
+                                        products = prod,
+                                        substitute = subs,
                                         )
 
-        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+        response_login = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-        response2 = self.client.post("/save/7622210988034/7622210449283")
+        response_post = self.client.post("/save/7622210988034/7622210449283")
 
-        assert response == True
-        assert response2.status_code == 200
-        assert response2.templates[0].name == "food_substitute/favorites.html"
-        assert response2.context["recording"] == True
-        assert response2.context["duplicates"] == True
-        assert response2.context["user"] == user
+        assert response_login == True
+        assert response_post.status_code == 200
+        assert response_post.templates[0].name == "food_substitute/favorites.html"
+        assert response_post.context["recording"] == True
+        assert response_post.context["duplicates"] == True
+        assert response_post.context["user"] == user
 
     @mark.django_db
     def test_save_user_connected_and_favorite_not_recorded(self):
 
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-        prod1 = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
-        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+        subs = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
-        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+        response_login = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-        response2 = self.client.post("/save/7622210988034/7622210449283")
+        response_post = self.client.post("/save/7622210988034/7622210449283")
 
         fav = Favorites.objects.all()
 
-        assert response == True
-        assert response2.status_code == 200
-        assert response2.templates[0].name == "food_substitute/favorites.html"
-        assert response2.context["recording"] == True
-        assert response2.context["duplicates"] == False
-        assert response2.context["user"] == user
+        assert response_login == True
+        assert response_post.status_code == 200
+        assert response_post.templates[0].name == "food_substitute/favorites.html"
+        assert response_post.context["recording"] == True
+        assert response_post.context["duplicates"] == False
+        assert response_post.context["user"] == user
         assert fav[0].products.name == "Véritable petit beurre"
         assert fav[0].substitute.name == "Prince goût chocolat"
         assert fav[0].users.email == "lennon@thebeatles.com"
@@ -311,8 +311,8 @@ class TestSave:
     @mark.django_db
     def test_save_user_not_connected(self):
 
-        prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
-        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+        subs = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
         response = self.client.post("/save/7622210988034/7622210449283")
 
@@ -330,10 +330,10 @@ def test_favorites():
 
     user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
-    response = client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+    response_login = client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
-    response2 = client.get("/favorites/")
+    response_post = client.get("/favorites/")
 
-    assert response == True
-    assert response2.status_code == 200
-    assert response2.templates[0].name == "food_substitute/favorites.html"
+    assert response_login == True
+    assert response_post.status_code == 200
+    assert response_post.templates[0].name == "food_substitute/favorites.html"
