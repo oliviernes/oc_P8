@@ -1,5 +1,8 @@
 import json
 
+import unittest
+from unittest.mock import patch
+
 from pytest import fixture, mark
 
 from food_substitute.management.commands.populate_db import Command
@@ -33,6 +36,29 @@ def test_duplicate_products():
     code_unique_list = set(code_list)
 
     assert len(code_list) == len(code_unique_list)
+
+
+@patch('food_substitute.management.commands.populate_db.requests.get')
+def test_search_data(mock_request):
+    mock_request.return_value.json.return_value = {
+                                    "products": {
+                                        "code": "3017620422003",
+                                        "category": [
+                                            274,
+                                            250
+                                        ]
+                                    }
+                                }
+
+    results = Command().search_data("pâtes à tartiner au chocolat")
+
+    assert results == {
+        "code": "3017620422003",
+        "category": [
+            274,
+            250
+        ]
+    }
 
 
 @mark.django_db
