@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 from pytest import mark
 
-from food_substitute.models import Products, Category
+from food_substitute.models import Products, Category, Favorites
 
 ####################
 ###  search view ###
@@ -261,11 +261,17 @@ class TestSave:
     client = Client()
 
     @mark.django_db
-    def test_save_user_connected(self):
+    def test_save_user_connected_and_favorite_already_recorded(self):
 
         user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-        prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod1 = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
         prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+        fav = Favorites.objects.create(
+                                        users = user,
+                                        products = prod2,
+                                        substitute = prod1,
+                                        )
 
         response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
 
@@ -274,6 +280,9 @@ class TestSave:
         assert response == True
         assert response2.status_code == 200
         assert response2.templates[0].name == "food_substitute/favorites.html"
+        assert response2.context["recording"] == True
+        assert response2.context["duplicates"] == True
+        assert response2.context["user"] == user
 
     @mark.django_db
     def test_save_user_not_connected(self):
