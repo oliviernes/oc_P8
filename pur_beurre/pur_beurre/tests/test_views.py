@@ -285,6 +285,30 @@ class TestSave:
         assert response2.context["user"] == user
 
     @mark.django_db
+    def test_save_user_connected_and_favorite_not_recorded(self):
+
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        prod1 = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        prod2 = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
+
+        response = self.client.login(username= 'lennon@thebeatles.com', password= 'johnpassword')
+
+        response2 = self.client.post("/save/7622210988034/7622210449283")
+
+        fav = Favorites.objects.all()
+
+        assert response == True
+        assert response2.status_code == 200
+        assert response2.templates[0].name == "food_substitute/favorites.html"
+        assert response2.context["recording"] == True
+        assert response2.context["duplicates"] == False
+        assert response2.context["user"] == user
+        assert fav[0].products.name == "Véritable petit beurre"
+        assert fav[0].substitute.name == "Prince goût chocolat"
+        assert fav[0].users.email == "lennon@thebeatles.com"
+
+
+    @mark.django_db
     def test_save_user_not_connected(self):
 
         prod = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
