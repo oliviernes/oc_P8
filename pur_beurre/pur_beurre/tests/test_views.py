@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 from pytest import mark
 
-from food_substitute.models import Products
+from food_substitute.models import Products, Category
 
 ####################
 ###  search view ###
@@ -38,11 +38,17 @@ class TestSearch:
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
 
-
     @mark.django_db
-    def test_search_product(self):
+    def test_search_no_better_product(self):
 
-        prod = Products.objects.create(name="Nutella", code="1")
+        cat = Category.objects.create(name="pâtes à tartiner au chocolat")
+        prod1 = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
+        prod2 = Products.objects.create(name="Pâte à tartiner lambda", code="2", nutrition_grades="e")
+        prod1.category.add(Category.objects.get(name=cat.name))
+        prod1.save()
+        prod2.category.add(Category.objects.get(name=cat.name))
+        prod2.save()
+
         response = self.client.get("/search/?query=Nutella")
         prod = response.context["product"]
 
@@ -50,7 +56,30 @@ class TestSearch:
         assert response.status_code == 200
         assert response.templates[0].name == "food_substitute/category.html"
         assert response.templates[1].name == "food_substitute/base.html"
+        assert response.context['paginate'] == True
+        assert response.context['better'] == False
 
+    @mark.django_db
+    def test_search_better_product(self):
+
+        cat = Category.objects.create(name="pâtes à tartiner au chocolat")
+        prod1 = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
+        prod2 = Products.objects.create(name="Pâte à tartiner", code="2", nutrition_grades="d")
+        prod1.category.add(Category.objects.get(name=cat.name))
+        prod1.save()
+        prod2.category.add(Category.objects.get(name=cat.name))
+        prod2.save()
+
+        response = self.client.get("/search/?query=Nutella")
+        prod = response.context["product"]
+
+        assert prod.name == "Nutella"
+        assert response.status_code == 200
+        assert response.templates[0].name == "food_substitute/category.html"
+        assert response.templates[1].name == "food_substitute/base.html"
+        assert response.context['paginate'] == True
+        assert response.context['better'] == True
+        assert response.context['better_prods'][0].name == "Pâte à tartiner"
 
     @mark.django_db
     def test_search_partial_query(self):
