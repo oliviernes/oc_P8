@@ -310,7 +310,7 @@ class TestSave:
 
         response_post = self.client.post("/save/7622210988034/7622210449283")
 
-        fav = Favorites.objects.all()
+        favorites = Favorites.objects.all()
 
         assert response_login == True
         assert response_post.status_code == 200
@@ -318,9 +318,9 @@ class TestSave:
         assert response_post.context["recording"] == True
         assert response_post.context["duplicates"] == False
         assert response_post.context["user"] == user
-        assert fav[0].products.name == "Véritable petit beurre"
-        assert fav[0].substitute.name == "Prince goût chocolat"
-        assert fav[0].users.email == "lennon@thebeatles.com"
+        assert favorites[0].products.name == "Véritable petit beurre"
+        assert favorites[0].substitute.name == "Prince goût chocolat"
+        assert favorites[0].users.email == "lennon@thebeatles.com"
 
 
     @mark.django_db
