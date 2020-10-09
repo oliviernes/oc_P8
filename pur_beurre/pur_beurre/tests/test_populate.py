@@ -77,7 +77,6 @@ def test_product_insertion(db_feed, nutella):
     prod = Products.objects.all()[0]
     relation = cat.products_set.all()
     prodn = Category.objects.filter(products__name = "Nutella")
-    # breakpoint()
 
     assert productos.count() == 1
     assert prod.code == "3017620420047"
@@ -91,7 +90,6 @@ def test_product_insertion(db_feed, nutella):
 
 @mark.django_db
 def test_printing_category_inserted(db_feed, nutella, capsys):
-    """ test the printing of inserted categories """
     Fake_API_response = [nutella[1]["fields"]]
     Products.objects.create(code="3017620420047")
 
@@ -110,7 +108,6 @@ insterted in the DB\n"
 
 @mark.django_db
 def test_printing_category_already_been_inserted(db_feed, nutella, capsys):
-    """ test the printing of inserted categories """
     Fake_API_response = [nutella[1]["fields"]]
     Products.objects.create(code="3017620420047")
     Category.objects.create(name="pâtes à tartiner au chocolat")
@@ -130,7 +127,6 @@ insterted in the DB\n"
 
 @mark.django_db
 def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
-    """ test the printing of inserted categories """
     Fake_API_response = []
     Products.objects.create(code="3017620420047")
     
