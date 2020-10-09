@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
+    """Class to signup users"""
     first_name = forms.CharField(
         label="Prénom", max_length=30, required=True, help_text="Requis."
     )
@@ -21,9 +22,11 @@ class SignUpForm(UserCreationForm):
     )
 
     def clean_email(self):
+        """Validation error for emails"""
         if User.objects.filter(email=self.cleaned_data["email"]).exists():
             raise forms.ValidationError(
-                "L'adresse email est déjà enregistrée. Veuillez renseigner une autre adresse email."
+                "L'adresse email est déjà enregistrée."
+                " Veuillez renseigner une autre adresse email."
             )
         return self.cleaned_data["email"]
 
@@ -40,6 +43,8 @@ class SignUpForm(UserCreationForm):
 
 
 class EmailLoginForm(AuthenticationForm):
+    """Class to add label to username field"""
     username = UsernameField(
-        label="Adresse Email", widget=forms.TextInput(attrs={"autofocus": True})
+        label="Adresse Email",
+        widget=forms.TextInput(attrs={"autofocus": True})
     )
