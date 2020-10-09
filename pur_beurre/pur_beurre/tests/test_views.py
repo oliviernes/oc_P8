@@ -285,12 +285,19 @@ class TestSave:
 
         response_post = self.client.post("/save/7622210988034/7622210449283")
 
+        favorites = Favorites.objects.all()
+        # breakpoint()
+
         assert response_login == True
         assert response_post.status_code == 200
         assert response_post.templates[0].name == "food_substitute/favorites.html"
         assert response_post.context["recording"] == True
         assert response_post.context["duplicates"] == True
         assert response_post.context["user"] == user
+        assert favorites.count() == 1
+        assert favorites[0].users.username == "john"
+        assert favorites[0].products.name == "Véritable petit beurre"
+        assert favorites[0].substitute.name == "Prince goût chocolat"
 
     @mark.django_db
     def test_save_user_connected_and_favorite_not_recorded(self):
