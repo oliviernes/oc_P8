@@ -400,3 +400,16 @@ def test_my_account():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/account.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
+#################
+### logout view #
+#################
+
+def test_logout_view():
+
+    client = Client()
+    response = client.get("/logout")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/logged_out.html"
+    assert response.templates[1].name == "food_substitute/base.html"
