@@ -22,6 +22,21 @@ For linux local storage:
 * cd pur_beurre
 * python3 manage.py runserver
 
+You also need to install postgresql and set the Databases settings in pur_beurre/pur_beurre/settings.py:
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": <XXXXXX>,
+        "USER": <XXXXXX>,
+        "PASSWORD": <XXXXXX>,
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
+
+You have to migrate to apply the migrations: python3 manage.py migrate
+
 The website is accessible on http://127.0.0.1:8000/ with your web browser.
 
 # Tests:
