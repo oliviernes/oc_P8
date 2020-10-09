@@ -3,11 +3,11 @@
 {% block bg %} style="background: black" {% endblock %}
 {% block image %}<img src="{{ product.image_small }}" alt="image" />{% endblock %}
 
-{% block infos %}<div class="col-lg-4 ml-auto text-center">
+{% block infos %}<div class="col-lg-6 ml-auto text-center">
                     <h3 class="mb-3">Nutriscore</h3>
                     <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ product.nutrition_grades }}.svg" title="Logo nutriscore" />
                 </div>
-                <div class="col-lg-4 mr-auto text-center">
+                <div class="col-lg-6 mr-auto text-center">
                     <h3 class="mb-auto">Repères nutritionnels pour 100g</h3>
                     {% if product.image_nutrition %}{{ spaceless }}
                     <br>
@@ -17,7 +17,7 @@
                     {% endif %}{{ endspaceless }}
                 </div>
                 <div class="row text-center mx-auto">
-                    <div class="col-lg-8" id="demobox">
+                    <div class="col-lg-12" id="demobox">
                         <a href="{{ product.url }}">Voir la fiche d'OpenFoodFacts</a>
                     </div>
                 </div>
