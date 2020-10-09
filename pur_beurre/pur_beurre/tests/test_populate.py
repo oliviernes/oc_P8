@@ -66,6 +66,28 @@ if the length of the API's answer is <250 products"""
     assert prod.url == ""
     assert prod.image_small == ""
 
+@mark.django_db
+def test_product_insertion(db_feed, nutella):
+
+    Fake_API_response = [nutella[1]["fields"]]
+
+    db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
+    cat = Category.objects.get(name = "pâtes à tartiner au chocolat")
+    productos = Products.objects.all()
+    prod = Products.objects.all()[0]
+    relation = cat.products_set.all()
+    prodn = Category.objects.filter(products__name = "Nutella")
+    # breakpoint()
+
+    assert productos.count() == 1
+    assert prod.code == "3017620420047"
+    assert prod.name == "Nutella"
+    assert prod.nutrition_grades == "e"
+    assert prod.image == "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg"
+    assert prod.image_small == "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg"
+    assert prod.image_nutrition == "https://static.openfoodfacts.org/images/products/301/762/042/0047/nutrition_fr.124.400.jpg"
+    assert prod.url == "https://fr-en.openfoodfacts.org/product/3017620420047/nutella-ferrero"
+    assert relation[0].name == "Nutella"
 
 @mark.django_db
 def test_printing_category_inserted(db_feed, nutella, capsys):
