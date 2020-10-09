@@ -109,6 +109,21 @@ insterted in the DB\n"
     )
 
 @mark.django_db
+def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
+    """ test the printing of inserted categories """
+    Fake_API_response = []
+    Products.objects.create(code="3017620420047")
+    
+    db_feed.populate(Fake_API_response, "pasta à tartiner au chocolat")
+
+    out, err = capsys.readouterr()
+    assert (
+        out
+        == "The category pasta à tartiner au chocolat is not present in OFF\
+    API. No products will be inserted in the database\n"
+    )
+
+@mark.django_db
 def test_product_with_long_fields(db_feed, nutella):
 
     Fake_API_response = [nutella[2]["fields"]]
