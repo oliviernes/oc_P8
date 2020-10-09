@@ -57,8 +57,10 @@ if the length of the API's answer is <250 products"""
     Fake_API_response = [nutella[0]["fields"]]
 
     db_feed.populate(Fake_API_response, "category")
+    products = Products.objects.all()
     prod = Products.objects.all()[0]
 
+    assert products.count() == 1
     assert prod.code == "3017620422003"
     assert prod.name == ""
     assert prod.url == ""
@@ -73,12 +75,16 @@ def test_printing_category_inserted(db_feed, nutella, capsys):
 
     db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
 
+    cat = Category.objects.all()
+
     out, err = capsys.readouterr()
     assert (
         out
         == "The category pâtes à tartiner au chocolat has been \
 insterted in the DB\n"
     )
+    assert cat.count() == 1
+    assert cat[0].name == "pâtes à tartiner au chocolat"
 
 @mark.django_db
 def test_printing_category_already_been_inserted(db_feed, nutella, capsys):
@@ -89,12 +95,16 @@ def test_printing_category_already_been_inserted(db_feed, nutella, capsys):
 
     db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
 
+    cat = Category.objects.all()
+
     out, err = capsys.readouterr()
     assert (
         out
         == "The category pâtes à tartiner au chocolat has already been \
 insterted in the DB\n"
     )
+    assert cat.count() == 1
+
 
 @mark.django_db
 def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
@@ -104,12 +114,15 @@ def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
     
     db_feed.populate(Fake_API_response, "pasta à tartiner au chocolat")
 
+    cat = Category.objects.all()
+
     out, err = capsys.readouterr()
     assert (
         out
         == "The category pasta à tartiner au chocolat is not present in OFF\
     API. No products will be inserted in the database\n"
     )
+    assert cat.count() == 0
 
 @mark.django_db
 def test_product_with_long_fields(db_feed, nutella):
@@ -119,8 +132,12 @@ def test_product_with_long_fields(db_feed, nutella):
     db_feed.populate(Fake_API_response, "category")
     prod = Products.objects.all()[0]
 
+    cat = Category.objects.all()
+
     assert prod.code == "3017620425035"
     assert (
         prod.name
         == "NutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNutellaNut"
     )
+    assert cat.count() == 1
+    assert cat[0].name == "category"
