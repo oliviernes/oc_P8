@@ -76,7 +76,6 @@ def test_product_insertion(db_feed, nutella):
     productos = Products.objects.all()
     prod = Products.objects.all()[0]
     relation = cat.products_set.all()
-    prodn = Category.objects.filter(products__name = "Nutella")
 
     assert productos.count() == 1
     assert prod.code == "3017620420047"
