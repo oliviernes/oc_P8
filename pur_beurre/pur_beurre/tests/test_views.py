@@ -413,3 +413,16 @@ def test_logout_view():
     assert response.status_code == 200
     assert response.templates[0].name == "registration/logged_out.html"
     assert response.templates[1].name == "food_substitute/base.html"
+
+#####################
+### disclaimer view #
+#####################
+
+def test_disclaimer_view():
+
+    client = Client()
+    response = client.get("/disclaimer/")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "food_substitute/disclaimer.html"
+    assert response.templates[1].name == "food_substitute/base.html"
