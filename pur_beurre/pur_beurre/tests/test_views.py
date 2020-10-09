@@ -114,6 +114,14 @@ def test_detail_product():
     assert response.templates[0].name == "food_substitute/detail.html"
     assert response.templates[1].name == "food_substitute/base.html"
 
+@mark.django_db
+def test_404_detail_product():
+
+    client = Client()
+    response = client.get("/product/123456789")
+
+    assert response.status_code == 404
+
 ####################
 ### welcome view ###
 ####################
