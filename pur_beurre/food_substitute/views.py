@@ -120,7 +120,7 @@ def save(request, produc, substitut):
 
 def favorites(request):
     user_id = request.user.id
-    user = User.objects.get(id = user_id)
+    user = get_object_or_404(User, id = user_id)
     recorded = Favorites.objects.filter(users = user)
     favorite_recorded=[]
     for record in recorded:
