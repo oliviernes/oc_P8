@@ -387,3 +387,16 @@ def test_404_favorites():
     response = client.get("/favorites/")
 
     assert response.status_code == 404
+
+#####################
+### my_account view #
+#####################
+
+def test_my_account():
+
+    client = Client()
+    response = client.get("/my_account/")
+
+    assert response.status_code == 200
+    assert response.templates[0].name == "registration/account.html"
+    assert response.templates[1].name == "food_substitute/base.html"
