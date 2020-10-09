@@ -356,3 +356,11 @@ def test_favorites():
     assert response_post.context['recording'] == False
     assert response_post.context["favorite_recorded"][0][0].name == "Véritable petit beurre"
     assert response_post.context["favorite_recorded"][0][1].name == "Prince goût chocolat"
+
+@mark.django_db
+def test_404_favorites():
+
+    client = Client()
+    response = client.get("/favorites/")
+
+    assert response.status_code == 404
