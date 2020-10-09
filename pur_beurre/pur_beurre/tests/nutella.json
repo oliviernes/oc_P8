@@ -17,14 +17,11 @@
         "code": "3017620420047",
         "product_name_fr": "Nutella",
         "nutrition_grades": "e",
-        "image": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg",
-        "image_small": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg",
-        "image_nutrition": "https://static.openfoodfacts.org/images/products/301/762/042/0047/nutrition_fr.124.400.jpg",
+        "image_url": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.400.jpg",
+        "image_small_url": "https://static.openfoodfacts.org/images/products/301/762/042/0047/front_fr.140.200.jpg",
+        "image_nutrition_url": "https://static.openfoodfacts.org/images/products/301/762/042/0047/nutrition_fr.124.400.jpg",
         "url": "https://fr-en.openfoodfacts.org/product/3017620420047/nutella-ferrero",
-        "category": [
-            274,
-            250
-        ]
+        "category": [461]
     }
 },
 {
