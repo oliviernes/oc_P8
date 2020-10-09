@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 
+
 class EmailBackend(object):
     def authenticate(self, request, username=None, password=None, **kwargs):
         User = get_user_model()
@@ -11,9 +12,10 @@ class EmailBackend(object):
         except User.DoesNotExist:
             return None
         else:
-            if getattr(user, 'is_active', False) and  user.check_password(password):
+            if getattr(user, "is_active", False) and user.check_password(password):
                 return user
         return None
+
     def get_user(self, user_id):
         User = get_user_model()
         try:

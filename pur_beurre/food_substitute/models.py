@@ -23,14 +23,19 @@ class Products(models.Model):
 
     def display_category(self):
         """Create a string for the Category. This is required to display category in Admin."""
-        return ', '.join(category.name for category in self.category.all()[:3])
+        return ", ".join(category.name for category in self.category.all()[:3])
 
-    display_category.short_description = 'Category'
+    display_category.short_description = "Category"
 
     def __str__(self):
         return self.name
 
+
 class Favorites(models.Model):
     users = models.ForeignKey(User, on_delete=models.CASCADE)
-    products = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='prod_id')
-    substitute = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='subs_id')
+    products = models.ForeignKey(
+        Products, on_delete=models.CASCADE, related_name="prod_id"
+    )
+    substitute = models.ForeignKey(
+        Products, on_delete=models.CASCADE, related_name="subs_id"
+    )

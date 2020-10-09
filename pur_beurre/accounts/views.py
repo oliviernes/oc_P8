@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 
 from accounts.forms import SignUpForm, EmailLoginForm
+
 # Create your views here.
 
 
@@ -10,12 +11,12 @@ def my_account(request):
     return render(request, "registration/account.html")
 
 
-def signup_view(request, backend = 'django.contrib.auth.backends.ModelBackend'):
+def signup_view(request, backend="django.contrib.auth.backends.ModelBackend"):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user, backend = 'django.contrib.auth.backends.ModelBackend')
+            login(request, user, backend="django.contrib.auth.backends.ModelBackend")
             return redirect("my_account")
     else:
         form = SignUpForm()

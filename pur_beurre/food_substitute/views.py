@@ -8,6 +8,7 @@ from .models import Category, Products, Favorites
 
 import pdb
 
+
 def welcome(request):
     return render(request, "food_substitute/welcome.html")
 
@@ -45,7 +46,7 @@ of the product selected"""
             categories_sorted = Counter(categories).most_common()
             categories_most = []
             for elem in categories_sorted:
-                if elem[1]/len(categories) > 0.2:
+                if elem[1] / len(categories) > 0.2:
                     categories_most.append(elem[0])
             prods = []
             for categ in categories_most:
@@ -87,23 +88,34 @@ of the product selected"""
 
     return render(request, "food_substitute/category.html", context)
 
+
 def save(request, produc, substitut):
 
     if request.user.is_authenticated:
         user_id = request.user.id
-        user = User.objects.get(id = user_id)
-        product = Products.objects.get(code = produc)
-        substitute = Products.objects.get(code = substitut)
+        user = User.objects.get(id=user_id)
+        product = Products.objects.get(code=produc)
+        substitute = Products.objects.get(code=substitut)
         duplicates = False
-        recorded = Favorites.objects.filter(users = user)
-        favorite_recorded=[]
+        recorded = Favorites.objects.filter(users=user)
+        favorite_recorded = []
         for record in recorded:
-            rec = (Products.objects.get(id = record.products_id), Products.objects.get(id = record.substitute_id))
+            rec = (
+                Products.objects.get(id=record.products_id),
+                Products.objects.get(id=record.substitute_id),
+            )
             favorite_recorded.append(rec)
-        if len(Favorites.objects.filter(users = user, products=product, substitute=substitute)) > 0:
+        if (
+            len(
+                Favorites.objects.filter(
+                    users=user, products=product, substitute=substitute
+                )
+            )
+            > 0
+        ):
             duplicates = True
         else:
-            record = Favorites(users = user, products=product, substitute=substitute)
+            record = Favorites(users=user, products=product, substitute=substitute)
             record.save()
         recording = True
         context = {
@@ -118,19 +130,23 @@ def save(request, produc, substitut):
     else:
         return redirect("login")
 
+
 def favorites(request):
     user_id = request.user.id
-    user = get_object_or_404(User, id = user_id)
-    recorded = Favorites.objects.filter(users = user)
-    favorite_recorded=[]
+    user = get_object_or_404(User, id=user_id)
+    recorded = Favorites.objects.filter(users=user)
+    favorite_recorded = []
     for record in recorded:
-        rec = (Products.objects.get(id = record.products_id), Products.objects.get(id = record.substitute_id))
+        rec = (
+            Products.objects.get(id=record.products_id),
+            Products.objects.get(id=record.substitute_id),
+        )
         favorite_recorded.append(rec)
 
     recording = False
     context = {
-                "recording": recording,
-                "favorite_recorded": favorite_recorded,
-            }
+        "recording": recording,
+        "favorite_recorded": favorite_recorded,
+    }
 
     return render(request, "food_substitute/favorites.html", context)
