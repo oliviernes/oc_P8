@@ -26,18 +26,6 @@ def db_feed():
     return Command()
 
 
-## test giving a false positive, not deleted for studying purpose
-@mark.django_db
-def test_duplicate_products():
-    """Test if the database have duplicate products"""
-
-    products_db = Products.objects.all()
-    code_list = [products_db[i].code for i in range(len(products_db))]
-    code_unique_list = set(code_list)
-
-    assert len(code_list) == len(code_unique_list)
-
-
 @patch('food_substitute.management.commands.populate_db.requests.get')
 def test_search_data(mock_request):
     mock_request.return_value.json.return_value = {
