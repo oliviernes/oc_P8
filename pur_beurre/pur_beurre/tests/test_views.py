@@ -331,8 +331,11 @@ class TestSave:
 
         response = self.client.post("/save/7622210988034/7622210449283")
 
+        favorites = Favorites.objects.all()
+
         assert response.status_code == 302
         assert response.url == "/login/"
+        assert favorites.count() == 0
 
 ####################
 ### favorites view #
