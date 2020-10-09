@@ -223,8 +223,15 @@ class TestSignup:
                                         'password2': 'monsupermdp1234', 
                                     })
 
+        users = User.objects.all()
+
         assert response.url == "/my_account/"
         assert response.status_code == 302
+        assert users.count() == 1
+        assert users[0].username == 'Mell1'
+        assert users[0].first_name == 'Mell'
+        assert users[0].last_name == 'MAMAMA'
+        assert users[0].email == 'mell6@gmail.com'
 
     @mark.django_db
     def test_signup_user_incorrect_data(self):
@@ -238,9 +245,12 @@ class TestSignup:
                                         'password2': 'bb',
                                         })
 
+        users = User.objects.all()
+
         assert response.status_code == 200
         assert response.templates[0].name == "registration/signup.html"
         assert response.templates[1].name == "food_substitute/base.html"
+        assert users.count() == 0
 
     @mark.django_db
     def test_signup_user_email_already_used(self):
@@ -256,9 +266,12 @@ class TestSignup:
                                         'password2': 'monsupermdp1234', 
                                     })
 
+        users = User.objects.all()
+
         assert response.status_code == 200
         assert response.templates[0].name == "registration/signup.html"
         assert response.templates[1].name == "food_substitute/base.html"
+        assert users.count() == 1
 
 ####################
 ### save view   ####
