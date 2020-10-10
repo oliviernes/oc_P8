@@ -1,6 +1,3 @@
-import datetime
-
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 from pytest import mark
@@ -8,7 +5,7 @@ from pytest import mark
 from accounts.forms import SignUpForm, EmailLoginForm
 
 ####################
-#### SignUpForm  ###
+#    SignUpForm    #
 ####################
 
 

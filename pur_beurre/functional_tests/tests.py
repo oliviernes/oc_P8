@@ -1,14 +1,14 @@
+"""Functional tests"""
+import time
+
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-import pdb
-
-import unittest
-import time
 
 
 class NewVisitorTest(LiveServerTestCase):
+    """Class testing a new user visiting the Pur Beurre website"""
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
@@ -17,7 +17,8 @@ class NewVisitorTest(LiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_choose_a_product(self):
+    def test_user_story(self):
+        """Test the story of an user inside Pur Beurre app"""
 
         # Mell has heard about a website to get healthier products. She goes
         # to check out its homepage
@@ -55,7 +56,8 @@ class NewVisitorTest(LiveServerTestCase):
         prod_text = self.browser.find_element_by_tag_name("h4").text
         self.assertIn("Nocciolata", prod_text)
 
-        # She selects a product and get a new page with the detail of the product
+        # She selects a product and get a new page with the detail
+        #  of the product
 
         link = self.browser.find_element_by_xpath(
             '//a[@href="/product/8001505005592"]'
@@ -78,8 +80,9 @@ class NewVisitorTest(LiveServerTestCase):
 
         # The page updates and show a new list of healthier products.
 
-        # Mell try to save the first product. She click on the save link but as she
-        # is not connected, the link send her on the login page:
+        # Mell try to save the first product. She click on the
+        # save link but as she is not connected, the link send
+        # her on the login page:
 
         save_texts = self.browser.find_elements_by_tag_name("h4")
         self.assertIn("Sauvegarder", save_texts[1].text)
@@ -105,7 +108,8 @@ class NewVisitorTest(LiveServerTestCase):
         time.sleep(1)
 
         # The system inform her to try again:
-        # Then, she click on the signup button because she doesn't have an account:
+        # Then, she click on the signup button because she doesn't
+        #  have an account:
 
         signup = self.browser.find_element_by_id("signup")
 
@@ -113,7 +117,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         time.sleep(1)
 
-        # The system display the signup form. She enters her account information:
+        # The system display the signup form. She enters her
+        # account information:
 
         username = self.browser.find_element_by_id("id_username")
         first_name = self.browser.find_element_by_id("id_first_name")
