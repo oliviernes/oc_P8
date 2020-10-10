@@ -1,3 +1,4 @@
+"""Testing forms in pur_beurre"""
 from django.contrib.auth.models import User
 
 from pytest import mark
@@ -75,7 +76,7 @@ def test_signup_email_already_recorded():
 
 
 ########################
-#### EmailLoginForm  ###
+#    EmailLoginForm    #
 ########################
 
 

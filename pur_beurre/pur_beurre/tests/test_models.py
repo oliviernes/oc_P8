@@ -1,12 +1,10 @@
-from django.test import Client
-from django.contrib.auth.models import User
-
+"""Test models in pur_beurre app"""
 from pytest import mark
 
-from food_substitute.models import Category, Products, Favorites
+from food_substitute.models import Category, Products
 
 ####################
-### Cagetory model #
+#   Cagetory model #
 ####################
 
 
@@ -21,7 +19,7 @@ def test_category_name_label():
 
 
 ####################
-### Product model  #
+#   Product model  #
 ####################
 
 

@@ -1,3 +1,4 @@
+"""Test views in pur_beurre app"""
 from django.test import Client
 from django.contrib.auth.models import User
 
@@ -6,10 +7,8 @@ from pytest import mark
 from food_substitute.models import Products, Category, Favorites
 
 ####################
-###  search view ###
+#    search view   #
 ####################
-
-import pdb
 
 
 class TestSearch:
@@ -93,7 +92,7 @@ class TestSearch:
     @mark.django_db
     def test_search_partial_query(self):
 
-        prod = Products.objects.create(name="Nutella", code="1")
+        Products.objects.create(name="Nutella", code="1")
 
         response = self.client.get("/search/?query=Nutel")
         product = response.context["product"]
@@ -105,14 +104,14 @@ class TestSearch:
 
 
 ###################
-### detail view ###
+#   detail view   #
 ###################
 
 
 @mark.django_db
 def test_detail_product():
 
-    prod = Products.objects.create(name="Nutella", code="123456789")
+    Products.objects.create(name="Nutella", code="123456789")
 
     client = Client()
     response = client.get("/product/123456789")
@@ -134,7 +133,7 @@ def test_404_detail_product():
 
 
 ####################
-### welcome view ###
+#   welcome view   #
 ####################
 
 
@@ -149,7 +148,7 @@ def test_welcome():
 
 
 ####################
-### login view #####
+#   login view     #
 ####################
 
 
@@ -167,7 +166,7 @@ class TestLogin:
 
     @mark.django_db
     def test_login_valid_user(self):
-        user = User.objects.create_user(
+        User.objects.create_user(
             "john", "lennon@thebeatles.com", "johnpassword"
         )
 
@@ -198,7 +197,7 @@ class TestLogin:
     @mark.django_db
     def test_login_wrong_password(self):
 
-        user = User.objects.create_user(
+        User.objects.create_user(
             "john", "lennon@thebeatles.com", "johnpassword"
         )
 
@@ -227,7 +226,7 @@ class TestLogin:
 
 
 ####################
-### signup view ####
+#   signup view    #
 ####################
 
 
@@ -293,7 +292,7 @@ class TestSignup:
     @mark.django_db
     def test_signup_user_email_already_used(self):
 
-        user = User.objects.create_user(
+        User.objects.create_user(
             "john", "lennon@thebeatles.com", "johnpassword"
         )
 
@@ -318,7 +317,7 @@ class TestSignup:
 
 
 ####################
-### save view   ####
+#   save view      #
 ####################
 
 
@@ -339,7 +338,7 @@ class TestSave:
             name="Véritable petit beurre", code="7622210988034"
         )
 
-        fav = Favorites.objects.create(
+        Favorites.objects.create(
             users=user, products=prod, substitute=subs,
         )
 
@@ -370,10 +369,10 @@ class TestSave:
         user = User.objects.create_user(
             "john", "lennon@thebeatles.com", "johnpassword"
         )
-        subs = Products.objects.create(
+        Products.objects.create(
             name="Prince goût chocolat", code="7622210449283"
         )
-        prod = Products.objects.create(
+        Products.objects.create(
             name="Véritable petit beurre", code="7622210988034"
         )
 
@@ -401,10 +400,10 @@ class TestSave:
     @mark.django_db
     def test_save_user_not_connected(self):
 
-        subs = Products.objects.create(
+        Products.objects.create(
             name="Prince goût chocolat", code="7622210449283"
         )
-        prod = Products.objects.create(
+        Products.objects.create(
             name="Véritable petit beurre", code="7622210988034"
         )
 
@@ -418,7 +417,7 @@ class TestSave:
 
 
 ####################
-### favorites view #
+#   favorites view #
 ####################
 
 
@@ -437,7 +436,7 @@ def test_favorites():
         name="Véritable petit beurre", code="7622210988034"
     )
 
-    fav = Favorites.objects.create(users=user, products=prod, substitute=subs,)
+    Favorites.objects.create(users=user, products=prod, substitute=subs,)
 
     response_login = client.login(
         username="lennon@thebeatles.com", password="johnpassword"
@@ -469,7 +468,7 @@ def test_404_favorites():
 
 
 #####################
-### my_account view #
+#   my_account view #
 #####################
 
 
@@ -484,7 +483,7 @@ def test_my_account():
 
 
 #################
-### logout view #
+#   logout view #
 #################
 
 
@@ -499,7 +498,7 @@ def test_logout_view():
 
 
 #####################
-### disclaimer view #
+#   disclaimer view #
 #####################
 
 

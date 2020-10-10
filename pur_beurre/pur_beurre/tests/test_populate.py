@@ -1,6 +1,5 @@
 import json
 
-import unittest
 from unittest.mock import patch
 
 from pytest import fixture, mark
@@ -42,9 +41,9 @@ def test_fields_missing(db_feed, nutella):
     """Test if a product with missing fields can populate the db and \
 if the length of the API's answer is <250 products"""
 
-    Fake_API_response = [nutella[0]["fields"]]
+    fake_api_response = [nutella[0]["fields"]]
 
-    db_feed.populate(Fake_API_response, "category")
+    db_feed.populate(fake_api_response, "category")
     products = Products.objects.all()
     prod = Products.objects.all()[0]
 
@@ -58,9 +57,9 @@ if the length of the API's answer is <250 products"""
 @mark.django_db
 def test_product_insertion(db_feed, nutella):
 
-    Fake_API_response = [nutella[1]["fields"]]
+    fake_api_response = [nutella[1]["fields"]]
 
-    db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
+    db_feed.populate(fake_api_response, "pâtes à tartiner au chocolat")
     cat = Category.objects.get(name="pâtes à tartiner au chocolat")
     productos = Products.objects.all()
     prod = Products.objects.all()[0]
@@ -91,10 +90,10 @@ def test_product_insertion(db_feed, nutella):
 
 @mark.django_db
 def test_printing_category_inserted(db_feed, nutella, capsys):
-    Fake_API_response = [nutella[1]["fields"]]
+    fake_api_response = [nutella[1]["fields"]]
     Products.objects.create(code="3017620420047")
 
-    db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
+    db_feed.populate(fake_api_response, "pâtes à tartiner au chocolat")
 
     cat = Category.objects.all()
 
@@ -110,11 +109,11 @@ insterted in the DB\n"
 
 @mark.django_db
 def test_printing_category_already_been_inserted(db_feed, nutella, capsys):
-    Fake_API_response = [nutella[1]["fields"]]
+    fake_api_response = [nutella[1]["fields"]]
     Products.objects.create(code="3017620420047")
     Category.objects.create(name="pâtes à tartiner au chocolat")
 
-    db_feed.populate(Fake_API_response, "pâtes à tartiner au chocolat")
+    db_feed.populate(fake_api_response, "pâtes à tartiner au chocolat")
 
     cat = Category.objects.all()
 
@@ -128,11 +127,11 @@ insterted in the DB\n"
 
 
 @mark.django_db
-def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
-    Fake_API_response = []
+def test_printing_category_not_in_off(db_feed, nutella, capsys):
+    fake_api_response = []
     Products.objects.create(code="3017620420047")
 
-    db_feed.populate(Fake_API_response, "pasta à tartiner au chocolat")
+    db_feed.populate(fake_api_response, "pasta à tartiner au chocolat")
 
     cat = Category.objects.all()
 
@@ -148,9 +147,9 @@ def test_printing_category_not_in_OFF(db_feed, nutella, capsys):
 @mark.django_db
 def test_product_with_long_fields(db_feed, nutella):
 
-    Fake_API_response = [nutella[2]["fields"]]
+    fake_api_response = [nutella[2]["fields"]]
 
-    db_feed.populate(Fake_API_response, "category")
+    db_feed.populate(fake_api_response, "category")
     prod = Products.objects.all()[0]
 
     cat = Category.objects.all()
