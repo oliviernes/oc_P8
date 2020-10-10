@@ -1,3 +1,4 @@
+"""Views to manage food_substitute"""
 from collections import Counter
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -6,15 +7,14 @@ from django.contrib.auth.models import User
 
 from .models import Category, Products, Favorites
 
-import pdb
-
 
 def welcome(request):
+    """Display welcome page"""
     return render(request, "food_substitute/welcome.html")
 
 
 def detail(request, code):
-    # product = Products.objects.get(code=code)
+    """Display detail view of products"""
     product = get_object_or_404(Products, code=code)
 
     context = {"product": product}
@@ -22,10 +22,12 @@ def detail(request, code):
 
 
 def disclaimer(request):
+    """Display disclaimer page"""
     return render(request, "food_substitute/disclaimer.html")
 
 
 def search(request):
+    """Search products according to user's queries"""
     query = request.GET.get("query")
 
     if not query:
@@ -55,13 +57,12 @@ of the product selected"""
                 products = Products.objects.filter(category__name=categ.name)
                 prods.append(products)
             for prod in prods:
-                for p in prod:
+                for productos in prod:
                     if (
-                        p.nutrition_grades != ""
-                        and p.nutrition_grades < product.nutrition_grades
+                            productos.nutrition_grades != ""
+                            and productos.nutrition_grades < product.nutrition_grades
                     ):
-                        better_prods.append(p)
-            # better_prods = list(set(better_prods))
+                        better_prods.append(productos)
             paginator = Paginator(better_prods, 9)
             page = request.GET.get("page")
             try:
@@ -72,8 +73,6 @@ of the product selected"""
                 better_p = paginator.page(paginator.num_pages)
             if len(better_prods) > 0:
                 better = True
-            else:
-                better = False
         else:
             product = None
             prods = None
@@ -82,7 +81,8 @@ of the product selected"""
         context = {
             "product": product,
             "better_prods": better_p,
-            "title_prod_missing": f"Il n'y a pas de produits '{query}' dans la base de données",
+            "title_prod_missing": f"Il n'y a pas de produits '{query}' dans"
+                                  " la base de données",
             "better": better,
             "paginate": True,
             "query": query,
@@ -92,7 +92,7 @@ of the product selected"""
 
 
 def save(request, produc, substitut):
-
+    """Save users' substitutes"""
     if request.user.is_authenticated:
         user_id = request.user.id
         user = User.objects.get(id=user_id)
@@ -108,12 +108,12 @@ def save(request, produc, substitut):
             )
             favorite_recorded.append(rec)
         if (
-            len(
-                Favorites.objects.filter(
-                    users=user, products=product, substitute=substitute
+                len(
+                    Favorites.objects.filter(
+                        users=user, products=product, substitute=substitute
+                    )
                 )
-            )
-            > 0
+                > 0
         ):
             duplicates = True
         else:
@@ -131,11 +131,11 @@ def save(request, produc, substitut):
             "favorite_recorded": favorite_recorded,
         }
         return render(request, "food_substitute/favorites.html", context)
-    else:
-        return redirect("login")
+    return redirect("login")
 
 
 def favorites(request):
+    """Display user's recorded substitutes"""
     user_id = request.user.id
     user = get_object_or_404(User, id=user_id)
     recorded = Favorites.objects.filter(users=user)

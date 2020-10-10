@@ -1,3 +1,4 @@
+"""Map URL patterns to view function"""
 from django.urls import path
 
 from . import views

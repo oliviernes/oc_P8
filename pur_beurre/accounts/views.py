@@ -1,5 +1,5 @@
+"""Views to manage accounts login and signup"""
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 
 from accounts.forms import SignUpForm, EmailLoginForm
@@ -8,10 +8,12 @@ from accounts.forms import SignUpForm, EmailLoginForm
 
 
 def my_account(request):
+    """Display logged in user's account page"""
     return render(request, "registration/account.html")
 
 
 def signup_view(request, backend="django.contrib.auth.backends.ModelBackend"):
+    """Signup users into their accounts"""
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -28,6 +30,7 @@ def signup_view(request, backend="django.contrib.auth.backends.ModelBackend"):
 
 
 def login_view(request):
+    """Log in users into their accounts"""
     if request.method == "POST":
         form = EmailLoginForm(data=request.POST)
         if form.is_valid():
@@ -40,5 +43,6 @@ def login_view(request):
 
 
 def logout_view(request):
+    """Log out users from their accounts"""
     logout(request)
     return render(request, "registration/logged_out.html")
