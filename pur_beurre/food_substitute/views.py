@@ -41,7 +41,9 @@ same name are in the database"""
             product = product[0]
             """Select products belongings to the different categories \
 of the product selected"""
-            categories = Category.objects.filter(products__name__contains=query)
+            categories = Category.objects.filter(
+                products__name__contains=query
+            )
             """Select categories above 20% occurencies"""
             categories_sorted = Counter(categories).most_common()
             categories_most = []
@@ -115,7 +117,9 @@ def save(request, produc, substitut):
         ):
             duplicates = True
         else:
-            record = Favorites(users=user, products=product, substitute=substitute)
+            record = Favorites(
+                users=user, products=product, substitute=substitute
+            )
             record.save()
         recording = True
         context = {

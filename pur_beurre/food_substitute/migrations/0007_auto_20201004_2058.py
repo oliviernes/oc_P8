@@ -12,10 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameField(
-            model_name="favorites", old_name="products_id", new_name="products",
+            model_name="favorites",
+            old_name="products_id",
+            new_name="products",
         ),
         migrations.RenameField(
-            model_name="favorites", old_name="substitute_id", new_name="substitute",
+            model_name="favorites",
+            old_name="substitute_id",
+            new_name="substitute",
         ),
         migrations.RenameField(
             model_name="favorites", old_name="users_id", new_name="users",

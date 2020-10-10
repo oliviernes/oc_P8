@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 
 class SignUpForm(UserCreationForm):
     """Class to signup users"""
+
     first_name = forms.CharField(
         label="Prénom", max_length=30, required=True, help_text="Requis."
     )
@@ -44,7 +45,8 @@ class SignUpForm(UserCreationForm):
 
 class EmailLoginForm(AuthenticationForm):
     """Class to add label to username field"""
+
     username = UsernameField(
         label="Adresse Email",
-        widget=forms.TextInput(attrs={"autofocus": True})
+        widget=forms.TextInput(attrs={"autofocus": True}),
     )
