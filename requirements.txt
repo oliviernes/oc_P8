@@ -1,5 +1,5 @@
 django==3.0.4
 psycopg2==2.8.4
 requests==2.23.0
-gunicorn
-django-heroku
+gunicorn==20.0.4
+django-heroku==0.3.1
