@@ -133,7 +133,6 @@ geckodriver.log
 
 #check before production deploy:
 
-pur_beurre/food_substitute/static/food_substitute/img/colette-tatou-full.png
 pur_beurre/food_substitute/static/food_substitute/img/ratatouille-portrait.jpg
 pur_beurre/food_substitute/forms.py
 pur_beurre/food_substitute/tests.py
