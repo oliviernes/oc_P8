@@ -142,3 +142,9 @@ pur_beurre/food_substitute/static/food_substitute/css/styles.css.map
 # draft work in progress:
 
 pur_beurre/pur_beurre/tests/test_populate2.py
+
+# production settings:
+
+pur_beurre/pur_beurre/settings/production.py
+__pycache__
+pur_beurre/staticfiles/

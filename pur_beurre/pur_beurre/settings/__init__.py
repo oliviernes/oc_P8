@@ -18,7 +18,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 sentry_sdk.init(
-    dsn="https://faacd4b460024efb9692cd590054885a@o312605.ingest.sentry.io/1782752",
+    dsn="https://d46ae1d9d3c14f4999701a39694047cd@o312605.ingest.sentry.io/5481348",
     integrations=[DjangoIntegration()]
 )
 
@@ -33,10 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "=u_e$l6t@v4837jk)_h!y%jz!jhir=a(0lymxu_f@gwg(e2_4@")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['purbeurre-on.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -62,7 +59,6 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -107,10 +103,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
-if os.environ.get('ENV') == 'PRODUCTION':
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
