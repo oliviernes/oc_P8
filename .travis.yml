@@ -1,0 +1,23 @@
+language: python
+python:
+  - '3.7'
+
+before_install:
+  - export PYTHONPATH=$PYTHONPATH:$PWD
+
+before_script:
+  - pwd
+  - ls -la pur_beurre
+
+# safelist
+branches:
+  only:
+    - travis4
+
+env: DJANGO_SETTINGS_MODULE="pur_beurre.settings"
+
+services:
+  - postgresql
+
+script:
+  - pytest pur_beurre/
