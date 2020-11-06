@@ -44,8 +44,9 @@ ALLOWED_HOSTS = ['purbeurre-on.herokuapp.com', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    "pur_beurre.apps.FoodsubstituteConfig",
     "accounts.apps.AccountsConfig",
-    "food_substitute.apps.FoodSubstituteConfig",
+    # "food_substitute.apps.FoodSubstituteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
