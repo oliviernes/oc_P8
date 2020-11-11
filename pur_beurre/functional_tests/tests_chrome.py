@@ -12,9 +12,12 @@ class NewVisitorTest(LiveServerTestCase):
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
-        options = Options()
+
+        options = webdriver.ChromeOptions()
+        options.add_argument('--disable-extensions')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
 
         self.browser = webdriver.Chrome(chrome_options=options)
 
