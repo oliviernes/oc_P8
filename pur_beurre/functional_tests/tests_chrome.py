@@ -4,7 +4,7 @@ import time
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.chrome.options import Options
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -12,8 +12,11 @@ class NewVisitorTest(LiveServerTestCase):
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
-        # self.service = webdriver.firefox.service.Service('geckodriver', port=1234)
-        self.browser = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+
+        self.browser = webdriver.Chrome(chrome_options=options)
 
     def tearDown(self):
         self.browser.quit()
