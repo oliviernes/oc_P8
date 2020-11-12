@@ -16,10 +16,10 @@ class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         options = Options()
         options.add_argument("--headless")
-        # Don't put the path to geckodriver in the following. But the firefox executable
-        # must be in the path. If not, include the path to firefox, not geckodriver below.
 
         self.browser = webdriver.Firefox(firefox_options=options)
+        self.browser.set_window_position(0, 0)
+        self.browser.set_window_size(1267, 950)
 
     def tearDown(self):
         self.browser.quit()
@@ -93,6 +93,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         save_texts = self.browser.find_elements_by_tag_name("h4")
         self.assertIn("Sauvegarder", save_texts[1].text)
+
+        time.sleep(2)
 
         save_texts[1].click()
 
