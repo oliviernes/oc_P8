@@ -5,6 +5,8 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver import Firefox
 
 
 class NewVisitorTest(LiveServerTestCase):
@@ -12,7 +14,12 @@ class NewVisitorTest(LiveServerTestCase):
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        options = Options()
+        options.add_argument("--headless")
+        # Don't put the path to geckodriver in the following. But the firefox executable
+        # must be in the path. If not, include the path to firefox, not geckodriver below.
+
+        self.browser = webdriver.Firefox(firefox_options=options)
 
     def tearDown(self):
         self.browser.quit()
