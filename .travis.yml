@@ -2,8 +2,10 @@ language: python
 python:
   - '3.7'
 
-before_script:
+before_install:
   - cd pur_beurre
+
+before_script:
   - pwd
   - ls -la
 
@@ -12,7 +14,7 @@ branches:
   only:
     - travis4
 
-env: DJANGO_SETTINGS_MODULE="pur_beurre.settings"
+env: DJANGO_SETTINGS_MODULE="pur_beurre.pur_beurre.settings"
 
 services:
   - postgresql
