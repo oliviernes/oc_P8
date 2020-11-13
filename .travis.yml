@@ -2,12 +2,10 @@ language: python
 python:
   - '3.7'
 
-before_install:
-  - export PYTHONPATH=$PYTHONPATH:$PWD
-
 before_script:
+  - cd pur_beurre
   - pwd
-  - ls -la pur_beurre
+  - ls -la
 
 # safelist
 branches:
