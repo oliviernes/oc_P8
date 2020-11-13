@@ -3,6 +3,7 @@ python:
   - '3.7'
 
 before_script:
+  - cd pur_beurre
   - pwd
   - ls -la
 
