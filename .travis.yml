@@ -4,7 +4,7 @@ python:
 
 before_script:
   - pip install -r requirements-dev.txt
-  - python3 pur_beurre/manage.py migrations
+  - python3 pur_beurre/manage.py makemigrations
   - python3 pur_beurre/manage.py migrate
   - cd pur_beurre
   - pwd
