@@ -5,14 +5,19 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-
+from selenium.webdriver.firefox.options import Options
 
 class NewVisitorTest(LiveServerTestCase):
     """Class testing a new user visiting the Pur Beurre website"""
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        options = Options()
+        options.add_argument("--headless")
+
+        self.browser = webdriver.Firefox(firefox_options=options)
+        self.browser.set_window_position(0, 0)
+        self.browser.set_window_size(1267, 950)
 
     def tearDown(self):
         self.browser.quit()
