@@ -33,10 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "=u_e$l6t@v4837jk)_h!y%jz!jhir=a(0lymxu_f@gwg(e2_4@")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['purbeurre-on.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -108,9 +105,9 @@ DATABASES = {
     }
 }
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+# if os.environ.get('ENV') == 'PRODUCTION':
+#     db_from_env = dj_database_url.config(conn_max_age=500)
+#     DATABASES['default'].update(db_from_env)
 
 
 # Password validation
