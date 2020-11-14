@@ -1,0 +1,36 @@
+language: python
+python:
+  - '3.7'
+
+addons:
+  firefox: latest
+
+install:
+  - wget -N https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -P ~/
+  - tar -xzf ~/geckodriver-v0.26.0-linux64.tar.gz -C ~/
+  - rm ~/geckodriver-v0.26.0-linux64.tar.gz
+  - sudo mv -f ~/geckodriver /usr/local/share
+  - sudo chmod +x /usr/local/share/geckodriver
+  - sudo ln -s /usr/local/share/geckodriver /usr/local/bin/geckodriver
+
+before_script:
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+  - cd pur_beurre
+  - pwd
+  - ls -la
+  - python3 manage.py collectstatic
+
+# safelist
+branches:
+  only:
+    - travis4
+
+env: DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
+
+services:
+  - postgresql
+
+script:
+  - pytest -v
+  - python3 manage.py test functional_tests/
