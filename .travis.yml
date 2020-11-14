@@ -19,4 +19,4 @@ services:
   - postgresql
 
 script:
-  - pytest pur_beurre/
+  - pytest -v
