@@ -15,7 +15,7 @@ branches:
   only:
     - travis4
 
-env: DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
+env: DJANGO_SETTINGS_MODULE="pur_beurre.settings"
 
 services:
   - postgresql
