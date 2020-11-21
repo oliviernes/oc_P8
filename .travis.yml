@@ -24,7 +24,7 @@ before_script:
 # safelist
 branches:
   only:
-    - stage_travis
+    - stage
 
 env: DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
 
