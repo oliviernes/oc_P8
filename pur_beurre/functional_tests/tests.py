@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 
 from selenium.webdriver.firefox.options import Options
 
+
 class NewVisitorTest(LiveServerTestCase):
     """Class testing a new user visiting the Pur Beurre website"""
     fixtures = ["dumpy_content_fixtures"]
@@ -91,6 +92,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         save_texts = self.browser.find_elements_by_tag_name("h4")
         self.assertIn("Sauvegarder", save_texts[1].text)
+
+        time.sleep(2)
 
         save_texts[1].click()
 
