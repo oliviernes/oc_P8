@@ -11,18 +11,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(model_name="products", name="image_front",),
-        migrations.RemoveField(
-            model_name="products", name="image_front_thumb",
+        migrations.RemoveField(model_name="products", name="image_front_thumb",),
+        migrations.AddField(
+            model_name="products", name="image", field=models.URLField(null=True),
         ),
         migrations.AddField(
-            model_name="products",
-            name="image",
-            field=models.URLField(null=True),
-        ),
-        migrations.AddField(
-            model_name="products",
-            name="image_small",
-            field=models.URLField(null=True),
+            model_name="products", name="image_small", field=models.URLField(null=True),
         ),
         migrations.AlterField(
             model_name="products",
@@ -35,8 +29,6 @@ class Migration(migrations.Migration):
             field=models.URLField(null=True),
         ),
         migrations.AlterField(
-            model_name="products",
-            name="url",
-            field=models.URLField(null=True),
+            model_name="products", name="url", field=models.URLField(null=True),
         ),
     ]

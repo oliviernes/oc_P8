@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 class EmailBackend(object):
     """custom authentication backend"""
+
     def authenticate(self, request, username=None, password=None):
         """Method to authenticate"""
         user_model = get_user_model()
@@ -13,9 +14,7 @@ class EmailBackend(object):
         except user_model.DoesNotExist:
             return None
         else:
-            if getattr(user, "is_active", False) and user.check_password(
-                    password
-            ):
+            if getattr(user, "is_active", False) and user.check_password(password):
                 return user
         return None
 

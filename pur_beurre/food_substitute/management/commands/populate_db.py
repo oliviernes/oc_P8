@@ -43,9 +43,7 @@ class Command(BaseCommand):
                 cat.save()
                 print(f"The category {cat.name} has been insterted in the DB")
             else:
-                print(
-                    f"The category {cat.name} has already been insterted in the DB"
-                )
+                print(f"The category {cat.name} has already been insterted in the DB")
             for i in range(len(infos_prod[:150])):
                 prod_index = infos_prod[i]
                 """Add an if statements to not duplicate products entry in the db"""
@@ -53,15 +51,11 @@ class Command(BaseCommand):
                     prod = Products(code=prod_index["code"])
                     prod.name = prod_index.get("product_name_fr", "")[:255]
                     prod.image = prod_index.get("image_url", "")[:200]
-                    prod.image_small = prod_index.get("image_small_url", "")[
+                    prod.image_small = prod_index.get("image_small_url", "")[:200]
+                    prod.image_nutrition = prod_index.get("image_nutrition_url", "")[
                         :200
                     ]
-                    prod.image_nutrition = prod_index.get(
-                        "image_nutrition_url", ""
-                    )[:200]
-                    prod.nutrition_grades = prod_index.get(
-                        "nutrition_grades", ""
-                    )
+                    prod.nutrition_grades = prod_index.get("nutrition_grades", "")
                     prod.url = prod_index.get("url", "")[:255]
                     prod.save()
                     prod.category.add(Category.objects.get(name=cat.name))

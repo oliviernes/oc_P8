@@ -42,9 +42,7 @@ class TestSearch:
     def test_search_no_better_product(self):
 
         cat = Category.objects.create(name="pâtes à tartiner au chocolat")
-        prod = Products.objects.create(
-            name="Nutella", code="1", nutrition_grades="e"
-        )
+        prod = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
         other_prod = Products.objects.create(
             name="Pâte à tartiner lambda", code="2", nutrition_grades="e"
         )
@@ -67,9 +65,7 @@ class TestSearch:
     def test_search_better_product(self):
 
         cat = Category.objects.create(name="pâtes à tartiner au chocolat")
-        prod = Products.objects.create(
-            name="Nutella", code="1", nutrition_grades="e"
-        )
+        prod = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
         better_prod = Products.objects.create(
             name="Pâte à tartiner", code="2", nutrition_grades="d"
         )
@@ -166,9 +162,7 @@ class TestLogin:
 
     @mark.django_db
     def test_login_valid_user(self):
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response_login = self.client.login(
             username="lennon@thebeatles.com", password="johnpassword"
@@ -197,9 +191,7 @@ class TestLogin:
     @mark.django_db
     def test_login_wrong_password(self):
 
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response_login = self.client.login(
             username="lennon@thebeatles.com", password="wrongpassword"
@@ -292,9 +284,7 @@ class TestSignup:
     @mark.django_db
     def test_signup_user_email_already_used(self):
 
-        User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
         response = self.client.post(
             "/signup/",
@@ -328,9 +318,7 @@ class TestSave:
     @mark.django_db
     def test_save_user_connected_and_favorite_already_recorded(self):
 
-        user = User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
+        user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
         subs = Products.objects.create(
             name="Prince goût chocolat", code="7622210449283"
         )
@@ -352,9 +340,7 @@ class TestSave:
 
         assert response_login == True
         assert response_post.status_code == 200
-        assert (
-            response_post.templates[0].name == "food_substitute/favorites.html"
-        )
+        assert response_post.templates[0].name == "food_substitute/favorites.html"
         assert response_post.context["recording"] == True
         assert response_post.context["duplicates"] == True
         assert response_post.context["user"] == user
@@ -366,15 +352,9 @@ class TestSave:
     @mark.django_db
     def test_save_user_connected_and_favorite_not_recorded(self):
 
-        user = User.objects.create_user(
-            "john", "lennon@thebeatles.com", "johnpassword"
-        )
-        Products.objects.create(
-            name="Prince goût chocolat", code="7622210449283"
-        )
-        Products.objects.create(
-            name="Véritable petit beurre", code="7622210988034"
-        )
+        user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
+        Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
         response_login = self.client.login(
             username="lennon@thebeatles.com", password="johnpassword"
@@ -386,9 +366,7 @@ class TestSave:
 
         assert response_login == True
         assert response_post.status_code == 200
-        assert (
-            response_post.templates[0].name == "food_substitute/favorites.html"
-        )
+        assert response_post.templates[0].name == "food_substitute/favorites.html"
         assert response_post.context["recording"] == True
         assert response_post.context["duplicates"] == False
         assert response_post.context["user"] == user
@@ -400,12 +378,8 @@ class TestSave:
     @mark.django_db
     def test_save_user_not_connected(self):
 
-        Products.objects.create(
-            name="Prince goût chocolat", code="7622210449283"
-        )
-        Products.objects.create(
-            name="Véritable petit beurre", code="7622210988034"
-        )
+        Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+        Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
         response = self.client.post("/save/7622210988034/7622210449283")
 
@@ -426,17 +400,13 @@ def test_favorites():
 
     client = Client()
 
-    user = User.objects.create_user(
-        "john", "lennon@thebeatles.com", "johnpassword"
-    )
-    subs = Products.objects.create(
-        name="Prince goût chocolat", code="7622210449283"
-    )
-    prod = Products.objects.create(
-        name="Véritable petit beurre", code="7622210988034"
-    )
+    user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
+    subs = Products.objects.create(name="Prince goût chocolat", code="7622210449283")
+    prod = Products.objects.create(name="Véritable petit beurre", code="7622210988034")
 
-    Favorites.objects.create(users=user, products=prod, substitute=subs,)
+    Favorites.objects.create(
+        users=user, products=prod, substitute=subs,
+    )
 
     response_login = client.login(
         username="lennon@thebeatles.com", password="johnpassword"
@@ -453,8 +423,7 @@ def test_favorites():
         == "Véritable petit beurre"
     )
     assert (
-        response_post.context["favorite_recorded"][0][1].name
-        == "Prince goût chocolat"
+        response_post.context["favorite_recorded"][0][1].name == "Prince goût chocolat"
     )
 
 

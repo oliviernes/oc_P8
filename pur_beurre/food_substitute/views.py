@@ -43,9 +43,7 @@ same name are in the database"""
             product = product[0]
             """Select products belongings to the different categories \
 of the product selected"""
-            categories = Category.objects.filter(
-                products__name__contains=query
-            )
+            categories = Category.objects.filter(products__name__contains=query)
             """Select categories above 20% occurencies"""
             categories_sorted = Counter(categories).most_common()
             categories_most = []
@@ -59,8 +57,8 @@ of the product selected"""
             for prod in prods:
                 for productos in prod:
                     if (
-                            productos.nutrition_grades != ""
-                            and productos.nutrition_grades < product.nutrition_grades
+                        productos.nutrition_grades != ""
+                        and productos.nutrition_grades < product.nutrition_grades
                     ):
                         better_prods.append(productos)
             paginator = Paginator(better_prods, 9)
@@ -82,7 +80,7 @@ of the product selected"""
             "product": product,
             "better_prods": better_p,
             "title_prod_missing": f"Il n'y a pas de produits '{query}' dans"
-                                  " la base de données",
+            " la base de données",
             "better": better,
             "paginate": True,
             "query": query,
@@ -108,18 +106,16 @@ def save(request, produc, substitut):
             )
             favorite_recorded.append(rec)
         if (
-                len(
-                    Favorites.objects.filter(
-                        users=user, products=product, substitute=substitute
-                    )
+            len(
+                Favorites.objects.filter(
+                    users=user, products=product, substitute=substitute
                 )
-                > 0
+            )
+            > 0
         ):
             duplicates = True
         else:
-            record = Favorites(
-                users=user, products=product, substitute=substitute
-            )
+            record = Favorites(users=user, products=product, substitute=substitute)
             record.save()
         recording = True
         context = {

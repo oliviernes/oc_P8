@@ -21,10 +21,7 @@ def test_signup_form_help_texts():
     form = SignUpForm()
     assert form.fields["first_name"].help_text == "Requis."
     assert form.fields["last_name"].help_text == "Optionel."
-    assert (
-        form.fields["email"].help_text
-        == "Requis. Entrez une adresse email valide."
-    )
+    assert form.fields["email"].help_text == "Requis. Entrez une adresse email valide."
 
 
 @mark.django_db
@@ -59,9 +56,7 @@ def test_signup_wrong_email():
 
 @mark.django_db
 def test_signup_email_already_recorded():
-    user = User.objects.create_user(
-        "john", "lennon@thebeatles.com", "johnpassword"
-    )
+    user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
     form = SignUpForm(
         data={
             "username": "Pierre26",

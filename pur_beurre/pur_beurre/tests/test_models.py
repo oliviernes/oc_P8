@@ -41,17 +41,11 @@ def test_products_labels():
     code_max_length = prod._meta.get_field("code").max_length
     name_label = prod._meta.get_field("name").verbose_name
     name_max_length = prod._meta.get_field("name").max_length
-    nutrition_grades_label = prod._meta.get_field(
-        "nutrition_grades"
-    ).verbose_name
-    nutrition_grades_max_length = prod._meta.get_field(
-        "nutrition_grades"
-    ).max_length
+    nutrition_grades_label = prod._meta.get_field("nutrition_grades").verbose_name
+    nutrition_grades_max_length = prod._meta.get_field("nutrition_grades").max_length
     image_label = prod._meta.get_field("image").verbose_name
     image_small_label = prod._meta.get_field("image_small").verbose_name
-    image_nutrition_label = prod._meta.get_field(
-        "image_nutrition"
-    ).verbose_name
+    image_nutrition_label = prod._meta.get_field("image_nutrition").verbose_name
     url_label = prod._meta.get_field("url").verbose_name
     url_max_length = prod._meta.get_field("url").max_length
     assert code_label == "code"

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     """Record Category model"""
+
     name = models.CharField(max_length=150)
 
     def __str__(self):
@@ -15,6 +16,7 @@ class Category(models.Model):
 
 class Products(models.Model):
     """Record Products model"""
+
     code = models.CharField(max_length=13)
     category = models.ManyToManyField(Category)
     name = models.CharField(max_length=255, null=True)
@@ -38,6 +40,7 @@ class Products(models.Model):
 
 class Favorites(models.Model):
     """Record Favorites model"""
+
     users = models.ForeignKey(User, on_delete=models.CASCADE)
     products = models.ForeignKey(
         Products, on_delete=models.CASCADE, related_name="prod_id"
