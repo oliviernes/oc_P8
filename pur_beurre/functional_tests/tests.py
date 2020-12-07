@@ -6,9 +6,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
+
 class NewVisitorTest(LiveServerTestCase):
     """Class testing a new user visiting the Pur Beurre website"""
-
     fixtures = ["dumpy_content_fixtures"]
 
     def setUp(self):
@@ -42,7 +42,9 @@ class NewVisitorTest(LiveServerTestCase):
 
         inputboxs = self.browser.find_elements_by_name("query")
         inputbox_center = inputboxs[1]
-        self.assertEqual(inputbox_center.get_attribute("placeholder"), "Produit")
+        self.assertEqual(
+            inputbox_center.get_attribute("placeholder"), "Produit"
+        )
         inputbox_center.send_keys("Nutella")
 
         # When she hits enter, the page updates, and now the page lists
@@ -57,7 +59,9 @@ class NewVisitorTest(LiveServerTestCase):
         # She selects a product and get a new page with the detail
         #  of the product
 
-        link = self.browser.find_element_by_xpath('//a[@href="/product/8001505005592"]')
+        link = self.browser.find_element_by_xpath(
+            '//a[@href="/product/8001505005592"]'
+        )
 
         link.click()
 
@@ -260,6 +264,15 @@ class NewVisitorTest(LiveServerTestCase):
 
         time.sleep(2)
 
-        # self.fail('Finish the test!')
-
         # Satisfied, she goes back to sleep after logging out:
+
+        logout = self.browser.find_element_by_xpath('//a[@href="/logout"]')
+
+        logout.click()
+
+        time.sleep(4)
+
+        disconnect_texts = self.browser.find_elements_by_tag_name("p")
+        self.assertEqual("Vous êtes déconnecté.", disconnect_texts[0].text)
+
+        # self.fail('Finish the test!')
