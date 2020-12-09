@@ -62,8 +62,13 @@ class TestSearch:
         assert response.context["better"] == False
 
     @mark.django_db
-    def test_search_better_product(self):
-
+    def test_search_better_product_and_check_percentage_of_categories_occurencies(self):
+        """
+        The minimum percentage of categories occurences is currently fixed to 20% but if a
+        Devops change the value and make the mistake to put the value to 100% or above,
+        it will result with this test breaking because of the value of
+        response.context["better"] which will be equal to False.
+        """
         cat = Category.objects.create(name="pâtes à tartiner au chocolat")
         prod = Products.objects.create(name="Nutella", code="1", nutrition_grades="e")
         better_prod = Products.objects.create(
