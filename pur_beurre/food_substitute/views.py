@@ -44,11 +44,11 @@ same name are in the database"""
             """Select products belongings to the different categories \
 of the product selected"""
             categories = Category.objects.filter(products__name__contains=query)
-            """Select categories above 30% occurences"""
+            """Select categories above 20% occurences"""
             categories_sorted = Counter(categories).most_common()
             categories_most = []
             for elem in categories_sorted:
-                if elem[1] / len(categories) > 30:
+                if elem[1] / len(categories) > 0.2:
                     categories_most.append(elem[0])
             prods = []
             for categ in categories_most:
