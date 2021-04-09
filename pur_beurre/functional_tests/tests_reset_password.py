@@ -1,5 +1,6 @@
 """Functional tests"""
 import time
+import re
 
 from django.test import LiveServerTestCase, Client
 from django.urls import reverse
@@ -108,29 +109,8 @@ class ResetPasswordTest(LiveServerTestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn("Réinitialisation du mot de passe sur localhost:", mail.outbox[0].subject)
 
-        response = self.client.post(reverse('password_reset'),{'email':'mell2010@gmail.com'})
+        self.browser.get(re.findall(r'(https?://\S+)', mail.outbox[0].body)[0])
         
-        self.assertEqual(response.status_code, 302)
-
-        # The port is retrieve thanks to the email subject.
-
-        port = mail.outbox[0].subject[-5:]
-
-        time.sleep(1)
-
-        self.assertEqual(len(mail.outbox), 2)
-        self.assertEqual(mail.outbox[1].subject, 'Réinitialisation du mot de passe sur testserver')
-
-        # The token and the uid are retrieve from the response context:
-
-        token = response.context[0]['token']
-        uid = response.context[0]['uid']
-        
-        # Mell go to her email account and click on the link of the
-        #  message sent by Pur beurre website:
-
-        self.browser.get("http://localhost:"+port+"/reset_password/"+uid+"/"+token)
-
         time.sleep(3)
 
         first_p = self.browser.find_elements_by_tag_name("p")
